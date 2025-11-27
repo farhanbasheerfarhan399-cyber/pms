@@ -18,21 +18,21 @@ import { cn } from '@/lib/utils';
 
 // Navigation items for Property Owner
 const propertyOwnerNavItems = [
-  { href: '/pages/property-owner', label: 'Dashboard', icon: Home },
-  { href: '/pages/property-owner/properties', label: 'Properties', icon: Building2 },
-  { href: '/pages/property-owner/tenants', label: 'Tenants', icon: Users },
-  { href: '/pages/property-owner/leases', label: 'Leases', icon: FileText },
-  { href: '/pages/property-owner/rent-management', label: 'Rent Management', icon: DollarSign },
-  { href: '/pages/property-owner/maintenance', label: 'Maintenance', icon: Wrench },
-  { href: '/pages/property-owner/accounts', label: 'Accounts', icon: CreditCard },
+  { href: '/property-owner', label: 'Dashboard', icon: Home },
+  { href: '/property-owner/properties', label: 'Properties', icon: Building2 },
+  { href: '/property-owner/tenants', label: 'Tenants', icon: Users },
+  { href: '/property-owner/leases', label: 'Leases', icon: FileText },
+  { href: '/property-owner/rent-management', label: 'Rent Management', icon: DollarSign },
+  { href: '/property-owner/maintenance', label: 'Maintenance', icon: Wrench },
+  { href: '/property-owner/accounts', label: 'Accounts', icon: CreditCard },
 ];
 
 // Navigation items for Tenant
 const tenantNavItems = [
-  { href: '/pages/tenant', label: 'Dashboard', icon: Home },
-  { href: '/pages/tenant/my-lease', label: 'My Lease', icon: FileText },
-  { href: '/pages/tenant/rent-status', label: 'Rent Status', icon: DollarSign },
-  { href: '/pages/tenant/maintenance', label: 'Maintenance', icon: Wrench },
+  { href: '/tenant', label: 'Dashboard', icon: Home },
+  { href: '/tenant/my-lease', label: 'My Lease', icon: FileText },
+  { href: '/tenant/rent-status', label: 'Rent Status', icon: DollarSign },
+  { href: '/tenant/maintenance', label: 'Maintenance', icon: Wrench },
 ];
 
 const roleNavItems = {

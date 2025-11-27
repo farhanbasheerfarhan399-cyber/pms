@@ -35,14 +35,14 @@ export default function PMSLoginForm() {
     
     // Define Redirection Paths
     const pathMap: Record<UserRole, string> = {
-      'property-owner': '/pages/property-owner',
-      'tenant': '/pages/tenant',
+       "property-owner": "/property-owner",
+  "tenant": "/tenant",
       '': '/', 
     };
 
     // Show redirect message and navigate
     const targetPath = pathMap[role];
-    setRedirectMessage(`Redirecting to ${role === 'property-owner' ? 'Property Owner' : 'Tenant'} Dashboard...`);
+    setRedirectMessage(`Redirecting to ${role === 'property-owner' ? 'Property Owner' : 'Tenant'} Pro...`);
     
     // Redirect to the appropriate page
     setTimeout(() => {

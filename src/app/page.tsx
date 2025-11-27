@@ -1,9 +1,6 @@
-// src/app/page.tsx
+import PMSLoginForm from "@/components/LoginForm";
 
-import LoginForm from './pages/auth/LoginForm';
 
-export default function LoginPage() {
-  return (
-    <LoginForm />
-  );
+export default function Head() {
+  return <PMSLoginForm />;
 }
