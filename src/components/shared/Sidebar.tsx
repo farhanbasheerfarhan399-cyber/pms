@@ -20,11 +20,11 @@ import { cn } from '@/lib/utils';
 const propertyOwnerNavItems = [
   { href: '/propertyowner-dashboard', label: 'Dashboard', icon: Home },
   { href: '/propertyowner-properties', label: 'Properties', icon: Building2 },
-  { href: '/tenant-management', label: 'Tenants', icon: Users },
-  { href: '/lease', label: 'Leases', icon: FileText },
-  { href: '/rentmanagement', label: 'Rent Management', icon: DollarSign },
-  { href: '/maintanance', label: 'Maintenance', icon: Wrench },
-  { href: '/accounts', label: 'Accounts', icon: CreditCard },
+  { href: '/propertyowner-tenant', label: 'Tenants', icon: Users },
+  { href: 'propertyowner-lease', label: 'Leases', icon: FileText },
+  { href: '/propertyowner-rent', label: 'Rent Management', icon: DollarSign },
+  { href: '/propertyowner-maintenance', label: 'Maintenance', icon: Wrench },
+  { href: '/propertyowner-accounts', label: 'Accounts', icon: CreditCard },
 ];
 
 // Navigation items for Tenant
