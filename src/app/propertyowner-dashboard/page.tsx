@@ -1,16 +1,17 @@
-// src/app/pages/tenant/page.tsx
+
+// src/app/pages/property-owner/page.tsx
 'use client';
 
 import { Header } from '@/components/shared/Header';
 import { Sidebar } from '@/components/shared/Sidebar';
-import { TenantDashboard } from '@/components/TenantDashboard';
+import { PropertyOwnerDashboard } from '@/components/PropertyDashboard';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-export default function TenantPage() {
+export default function PropertyOwnerPage() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -49,7 +50,7 @@ export default function TenantPage() {
         )}
       >
         <Sidebar 
-          userRole="tenant" 
+          userRole="property-owner" 
           onLogout={handleLogout}
           onNavigate={() => setIsMobileMenuOpen(false)}
         />
@@ -60,7 +61,7 @@ export default function TenantPage() {
         <Header />
         <main className="flex-1 overflow-y-auto p-6">
           <div className="max-w-7xl mx-auto">
-            <TenantDashboard />
+            <PropertyOwnerDashboard />
           </div>
         </main>
       </div>

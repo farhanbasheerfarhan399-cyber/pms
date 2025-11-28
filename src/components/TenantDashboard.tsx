@@ -2,7 +2,7 @@
 'use client';
 
 import * as React from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -17,6 +17,29 @@ import {
 } from 'lucide-react';
 
 export function TenantDashboard() {
+  const [showMaintenanceForm, setShowMaintenanceForm] = React.useState(false);
+  const [maintenanceFormData, setMaintenanceFormData] = React.useState({
+    issueType: '',
+    title: '',
+    description: '',
+    urgency: 'normal',
+  });
+
+  const handleMaintenanceSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission - send data to your API
+    console.log('Maintenance Request:', maintenanceFormData);
+    // Reset form and close
+    setMaintenanceFormData({
+      issueType: '',
+      title: '',
+      description: '',
+      urgency: 'normal',
+    });
+    setShowMaintenanceForm(false);
+    // Show success message or update UI
+  };
+
   // Mock data - replace with actual data from your API
   const leaseInfo = {
     property: 'Sunset Apartments - Unit 101',
@@ -61,49 +84,45 @@ export function TenantDashboard() {
   };
 
   return (
-    <div className="space-y-4 sm:space-y-6">
-      {/* Page Title */}
-      <div className="px-1">
+    <div className="space-y-3">
+      {/* Page Title - More Compact */}
+      <div>
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">My Dashboard</h1>
-        <p className="text-sm sm:text-base text-gray-600 mt-1">Welcome back to your tenant portal</p>
       </div>
 
-      {/* Lease Information Card */}
-      <Card className="border-2 shadow-sm">
-        <CardContent className="p-4 sm:p-6">
-          <div className="flex flex-col gap-4 sm:gap-6">
-            {/* Mobile: Stacked Layout, Desktop: Side by Side */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-              {/* Property Image */}
-              <div className="w-full sm:w-32 md:w-40 h-32 sm:h-32 md:h-40 bg-linear-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center shrink-0">
-                <Home className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-white" />
+      {/* Lease Information Card - Reduced Padding */}
+      <Card className="border">
+        <CardContent className="p-3 sm:p-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            {/* Property Image - Smaller */}
+            <div className="w-full sm:w-28 h-28 bg-linear-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center shrink-0">
+              <Home className="w-12 h-12 text-white" />
+            </div>
+
+            {/* Property Details - Tighter Spacing */}
+            <div className="flex-1">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{leaseInfo.property}</h2>
+                  <p className="text-sm sm:text-base text-gray-600">{leaseInfo.address}</p>
+                </div>
+                <Badge className="bg-green-500 hover:bg-green-600 text-white w-fit text-sm">
+                  {leaseInfo.status}
+                </Badge>
               </div>
 
-              {/* Property Details */}
-              <div className="flex-1 space-y-3 sm:space-y-4">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
-                  <div>
-                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">{leaseInfo.property}</h2>
-                    <p className="text-sm sm:text-base text-gray-600 mt-1">{leaseInfo.address}</p>
-                  </div>
-                  <Badge className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 text-xs sm:text-sm w-fit">
-                    {leaseInfo.status}
-                  </Badge>
+              <div className="grid grid-cols-3 gap-3">
+                <div>
+                  <p className="text-sm text-gray-600 mb-0.5">Monthly Rent</p>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900">${leaseInfo.monthlyRent.toLocaleString()}</p>
                 </div>
-
-                <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-                  <div>
-                    <p className="text-xs sm:text-sm text-gray-600 mb-1">Monthly Rent</p>
-                    <p className="text-xl sm:text-2xl font-bold text-gray-900">${leaseInfo.monthlyRent.toLocaleString()}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs sm:text-sm text-gray-600 mb-1">Lease Ends</p>
-                    <p className="text-xl sm:text-2xl font-bold text-gray-900">{leaseInfo.leaseEnds}</p>
-                  </div>
-                  <div className="xs:col-span-2 sm:col-span-1">
-                    <p className="text-xs sm:text-sm text-gray-600 mb-1">Security Deposit</p>
-                    <p className="text-xl sm:text-2xl font-bold text-gray-900">${leaseInfo.securityDeposit.toLocaleString()}</p>
-                  </div>
+                <div>
+                  <p className="text-sm text-gray-600 mb-0.5">Lease Ends</p>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900">{leaseInfo.leaseEnds}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 mb-0.5">Security Deposit</p>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900">${leaseInfo.securityDeposit.toLocaleString()}</p>
                 </div>
               </div>
             </div>
@@ -111,56 +130,56 @@ export function TenantDashboard() {
         </CardContent>
       </Card>
 
-      {/* Quick Actions */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer border">
-          <CardContent className="p-4 sm:p-5 md:p-6 text-center">
-            <DollarSign className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto text-blue-500 mb-2 sm:mb-3" />
-            <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-0.5 sm:mb-1">Pay Rent</h3>
-            <p className="text-xs sm:text-sm text-gray-600 hidden sm:block">Make payment</p>
+      {/* Quick Actions - Compact */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <Card className="hover:shadow-md transition-shadow cursor-pointer border">
+          <CardContent className="p-3 text-center">
+            <DollarSign className="w-8 h-8 mx-auto text-blue-500 mb-2" />
+            <h3 className="font-semibold text-sm mb-0.5">Pay Rent</h3>
+            <p className="text-xs text-gray-600">Make payment</p>
           </CardContent>
         </Card>
 
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer border">
-          <CardContent className="p-4 sm:p-5 md:p-6 text-center">
-            <Wrench className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto text-blue-500 mb-2 sm:mb-3" />
-            <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-0.5 sm:mb-1">Report Issue</h3>
-            <p className="text-xs sm:text-sm text-gray-600 hidden sm:block">Maintenance request</p>
+        <Card className="hover:shadow-md transition-shadow cursor-pointer border">
+          <CardContent className="p-3 text-center">
+            <Wrench className="w-8 h-8 mx-auto text-blue-500 mb-2" />
+            <h3 className="font-semibold text-sm mb-0.5">Report Issue</h3>
+            <p className="text-xs text-gray-600">Maintenance request</p>
           </CardContent>
         </Card>
 
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer border">
-          <CardContent className="p-4 sm:p-5 md:p-6 text-center">
-            <FileText className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto text-blue-500 mb-2 sm:mb-3" />
-            <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-0.5 sm:mb-1">View Lease</h3>
-            <p className="text-xs sm:text-sm text-gray-600 hidden sm:block">Agreement details</p>
+        <Card className="hover:shadow-md transition-shadow cursor-pointer border">
+          <CardContent className="p-3 text-center">
+            <FileText className="w-8 h-8 mx-auto text-blue-500 mb-2" />
+            <h3 className="font-semibold text-sm mb-0.5">View Lease</h3>
+            <p className="text-xs text-gray-600">Agreement details</p>
           </CardContent>
         </Card>
 
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer border">
-          <CardContent className="p-4 sm:p-5 md:p-6 text-center">
-            <Home className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto text-blue-500 mb-2 sm:mb-3" />
-            <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-0.5 sm:mb-1">Contact Owner</h3>
-            <p className="text-xs sm:text-sm text-gray-600 hidden sm:block">Send message</p>
+        <Card className="hover:shadow-md transition-shadow cursor-pointer border">
+          <CardContent className="p-3 text-center">
+            <Home className="w-8 h-8 mx-auto text-blue-500 mb-2" />
+            <h3 className="font-semibold text-sm mb-0.5">Contact Owner</h3>
+            <p className="text-xs text-gray-600">Send message</p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-        {/* Rent Payment Status */}
+      {/* Main Content Grid - Reduced Gap */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        {/* Rent Payment Status - Compact */}
         <Card className="border">
-          <CardHeader className="pb-3 sm:pb-6">
-            <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-              <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" />
+          <CardHeader className="pb-2">
+            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+              <DollarSign className="w-4 h-4 text-blue-500" />
               Rent Payment Status
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4 sm:space-y-6">
+          <CardContent className="space-y-3">
             {/* Current Month Payment */}
-            <div className="bg-green-50 rounded-lg p-3 sm:p-4 border border-green-200">
+            <div className="bg-green-50 rounded-lg p-3 border border-green-200">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs sm:text-sm font-medium text-gray-700">Current Month</span>
+                <span className="text-sm font-medium text-gray-700">Current Month</span>
                 <Badge className="bg-green-500 hover:bg-green-600 text-xs">Paid</Badge>
               </div>
               <p className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
@@ -170,110 +189,199 @@ export function TenantDashboard() {
             </div>
 
             {/* Next Payment Due */}
-            <div className="flex items-start gap-2 sm:gap-3 p-3 sm:p-4 bg-gray-50 rounded-lg border">
-              <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 mt-0.5 shrink-0" />
-              <div className="flex-1 min-w-0">
-                <p className="text-xs sm:text-sm font-medium text-gray-700 mb-1">Next Payment Due</p>
-                <p className="text-xs sm:text-sm text-gray-600 truncate">{rentPayment.nextPaymentDue}</p>
+            <div className="bg-gray-50 p-2.5 rounded-lg">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-gray-600" />
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">Next Payment Due</p>
+                    <p className="text-xs text-gray-600">{rentPayment.nextPaymentDue}</p>
+                  </div>
+                </div>
+                <p className="text-base font-bold text-gray-900">${rentPayment.currentMonth.toLocaleString()}</p>
               </div>
-              <p className="text-base sm:text-lg font-bold text-gray-900 whitespace-nowrap">
-                ${rentPayment.currentMonth.toLocaleString()}
-              </p>
             </div>
 
             {/* Payment History */}
             <div>
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-xs sm:text-sm font-medium text-gray-700">Payment History</span>
-                <span className="text-xs sm:text-sm font-semibold text-blue-600">{rentPayment.paymentHistory}</span>
+              <div className="flex items-center justify-between mb-1.5">
+                <p className="text-sm font-medium text-gray-900">Payment History</p>
+                <p className="text-sm font-semibold text-blue-600">{rentPayment.paymentHistory}</p>
               </div>
-              <Progress value={rentPayment.progressPercentage} className="h-1.5 sm:h-2" />
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div className="bg-blue-600 h-2 rounded-full" style={{width: `${rentPayment.progressPercentage}%`}}></div>
+              </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Maintenance Requests */}
+        {/* Maintenance Requests - Compact */}
         <Card className="border">
-          <CardHeader className="pb-3 sm:pb-6">
-            <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-              <Wrench className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" />
+          <CardHeader className="pb-2">
+            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+              <Wrench className="w-4 h-4 text-blue-500" />
               My Maintenance Requests
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 sm:space-y-4">
-            {/* Active Request */}
-            <div className="border rounded-lg p-3 sm:p-4 space-y-2 sm:space-y-3">
-              <div className="flex flex-col xs:flex-row xs:items-start xs:justify-between gap-2">
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-sm sm:text-base text-gray-900">{maintenanceRequest.title}</h4>
-                  <p className="text-xs sm:text-sm text-gray-600 mt-0.5">{maintenanceRequest.description}</p>
+          <CardContent className="space-y-4">
+            {!showMaintenanceForm ? (
+              <>
+                {/* Active Request */}
+                <div className="space-y-2">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-base sm:text-lg text-gray-900 mb-1">{maintenanceRequest.title}</h4>
+                      <p className="text-sm text-gray-600">{maintenanceRequest.description}</p>
+                    </div>
+                    <Badge className="bg-blue-500 hover:bg-blue-600 text-xs whitespace-nowrap">
+                      {maintenanceRequest.status}
+                    </Badge>
+                  </div>
+                  <div className="flex justify-between text-sm text-gray-600 pt-2 border-t">
+                    <span>Assigned: {maintenanceRequest.assignedTo}</span>
+                    <span>{maintenanceRequest.date}</span>
+                  </div>
                 </div>
-                <Badge className="bg-blue-500 hover:bg-blue-600 whitespace-nowrap text-xs w-fit">
-                  {maintenanceRequest.status}
-                </Badge>
-              </div>
-              <div className="flex flex-col xs:flex-row xs:justify-between gap-1 xs:gap-2 text-xs sm:text-sm text-gray-600">
-                <span className="truncate">Assigned: {maintenanceRequest.assignedTo}</span>
-                <span className="whitespace-nowrap">{maintenanceRequest.date}</span>
-              </div>
-            </div>
 
-            {/* No Other Requests */}
-            <div className="text-center py-6 sm:py-8">
-              <Wrench className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto text-gray-300 mb-2 sm:mb-3" />
-              <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">No other active requests</p>
-              <Button className="bg-blue-600 hover:bg-blue-700 text-sm sm:text-base px-4 sm:px-6">
-                Report New Issue
-              </Button>
-            </div>
+                {/* No Other Requests */}
+                <div className="text-center py-4">
+                  <Wrench className="w-14 h-14 mx-auto text-gray-300 mb-3" />
+                  <p className="text-sm text-gray-600 mb-3">No other active requests</p>
+                  <Button 
+                    onClick={() => setShowMaintenanceForm(true)}
+                    className="bg-blue-600 hover:bg-blue-700 text-sm"
+                  >
+                    Report New Issue
+                  </Button>
+                </div>
+              </>
+            ) : (
+              /* Maintenance Request Form */
+              <form onSubmit={handleMaintenanceSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Issue Type *
+                  </label>
+                  <select
+                    required
+                    value={maintenanceFormData.issueType}
+                    onChange={(e) => setMaintenanceFormData({...maintenanceFormData, issueType: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="">Select issue type</option>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="electrical">Electrical</option>
+                    <option value="hvac">HVAC</option>
+                    <option value="appliance">Appliance</option>
+                    <option value="structural">Structural</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Title *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={maintenanceFormData.title}
+                    onChange={(e) => setMaintenanceFormData({...maintenanceFormData, title: e.target.value})}
+                    placeholder="Brief description of the issue"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Description *
+                  </label>
+                  <textarea
+                    required
+                    value={maintenanceFormData.description}
+                    onChange={(e) => setMaintenanceFormData({...maintenanceFormData, description: e.target.value})}
+                    placeholder="Provide detailed information about the issue"
+                    rows={4}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Urgency Level *
+                  </label>
+                  <select
+                    required
+                    value={maintenanceFormData.urgency}
+                    onChange={(e) => setMaintenanceFormData({...maintenanceFormData, urgency: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="low">Low - Can wait</option>
+                    <option value="normal">Normal - Within a week</option>
+                    <option value="high">High - Within 24 hours</option>
+                    <option value="emergency">Emergency - Immediate attention</option>
+                  </select>
+                </div>
+
+                <div className="flex gap-2 pt-2">
+                  <Button
+                    type="submit"
+                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-sm"
+                  >
+                    Submit Request
+                  </Button>
+                  <Button
+                    type="button"
+                    onClick={() => setShowMaintenanceForm(false)}
+                    variant="outline"
+                    className="flex-1 text-sm"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </form>
+            )}
           </CardContent>
         </Card>
       </div>
 
-      {/* Important Information */}
-      <Card className="border">
-        <CardHeader className="pb-3 sm:pb-6">
-          <CardTitle className="text-lg sm:text-xl">Important Information</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {/* Property Manager */}
-            <div className="bg-blue-50 rounded-lg p-3 sm:p-4 space-y-2">
-              <h4 className="font-semibold text-sm sm:text-base text-gray-900 mb-2 sm:mb-3">Property Manager</h4>
-              <p className="font-semibold text-sm sm:text-base text-gray-900 wrap-break-word">{propertyManager.name}</p>
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                <Mail className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />
-                <span className="break-all">{propertyManager.email}</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                <Phone className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />
-                <span>{propertyManager.phone}</span>
-              </div>
-            </div>
+      {/* Important Information - Compact */}
+      <div>
+        <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Important Information</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {/* Property Manager */}
+          <Card className="border bg-blue-50">
+            <CardContent className="p-3">
+              <p className="text-sm font-semibold text-gray-900 mb-2 sm:mb-3">Property Manager</p>
+              <p className="text-base sm:text-lg font-bold text-gray-900 mb-1">{propertyManager.name}</p>
+              <p className="text-sm text-gray-600 mb-0.5">{propertyManager.email}</p>
+              <p className="text-sm text-gray-600">{propertyManager.phone}</p>
+            </CardContent>
+          </Card>
 
-            {/* Emergency Contact */}
-            <div className="bg-red-50 rounded-lg p-3 sm:p-4 space-y-2">
-              <h4 className="font-semibold text-sm sm:text-base text-gray-900 mb-2 sm:mb-3">Emergency Contact</h4>
-              <p className="font-semibold text-sm sm:text-base text-gray-900">{emergencyContact.hotline}</p>
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                <Phone className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />
-                <span>{emergencyContact.phone}</span>
-              </div>
-              <p className="text-xs sm:text-sm text-gray-600">{emergencyContact.note}</p>
-            </div>
+          {/* Emergency Contact */}
+          <Card className="border bg-blue-50">
+            <CardContent className="p-3">
+              <p className="text-sm font-semibold text-gray-900 mb-2 sm:mb-3">Emergency Contact</p>
+              <p className="text-base sm:text-lg font-bold text-gray-900 mb-1">{emergencyContact.hotline}</p>
+              <p className="text-sm text-gray-600 mb-0.5">{emergencyContact.phone}</p>
+              <p className="text-sm text-gray-600">{emergencyContact.note}</p>
+            </CardContent>
+          </Card>
 
-            {/* Lease Renewal */}
-            <div className="bg-orange-50 rounded-lg p-3 sm:p-4 space-y-2 sm:space-y-3 sm:col-span-2 lg:col-span-1">
-              <h4 className="font-semibold text-sm sm:text-base text-gray-900 mb-2 sm:mb-3">Lease Renewal</h4>
-              <p className="text-xl sm:text-2xl font-bold text-gray-900">{leaseRenewal.daysRemaining} Days Remaining</p>
-              <p className="text-xs sm:text-sm text-gray-600">Expires: {leaseRenewal.expiryDate}</p>
-              <Button variant="outline" className="w-full mt-2 text-sm sm:text-base">
+          {/* Lease Renewal */}
+          <Card className="border bg-blue-50">
+            <CardContent className="p-3">
+              <p className="text-sm font-semibold text-gray-900 mb-2 sm:mb-3">Lease Renewal</p>
+              <p className="text-base sm:text-lg font-bold text-gray-900 mb-1">{leaseRenewal.daysRemaining} Days Remaining</p>
+              <p className="text-sm text-gray-600 mb-2">Expires: {leaseRenewal.expiryDate}</p>
+              <Button variant="outline" size="sm" className="w-full text-sm">
                 Discuss Renewal
               </Button>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }

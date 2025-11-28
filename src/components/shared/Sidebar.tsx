@@ -18,8 +18,8 @@ import { cn } from '@/lib/utils';
 
 // Navigation items for Property Owner
 const propertyOwnerNavItems = [
-  { href: '/property-dashboard', label: 'Dashboard', icon: Home },
-  { href: '/property-owner/properties', label: 'Properties', icon: Building2 },
+  { href: '/propertyowner-dashboard', label: 'Dashboard', icon: Home },
+  { href: '/propertyowner-properties', label: 'Properties', icon: Building2 },
   { href: '/tenant-management', label: 'Tenants', icon: Users },
   { href: '/lease', label: 'Leases', icon: FileText },
   { href: '/property-owner/rent-management', label: 'Rent Management', icon: DollarSign },
@@ -29,7 +29,7 @@ const propertyOwnerNavItems = [
 
 // Navigation items for Tenant
 const tenantNavItems = [
-  { href: '/tenant', label: 'Dashboard', icon: Home },
+  { href: '/tenant-dashboard', label: 'Dashboard', icon: Home },
   { href: '/tenant/my-lease', label: 'My Lease', icon: FileText },
   { href: '/tenant/rent-status', label: 'Rent Status', icon: DollarSign },
   { href: '/tenant/maintenance', label: 'Maintenance', icon: Wrench },

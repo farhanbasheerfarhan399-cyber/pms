@@ -35,7 +35,7 @@ export default function PMSLoginForm() {
     
     // Define Redirection Paths
     const pathMap: Record<UserRole, string> = {
-       "property-owner": "/property-dashboard",
+       "property-owner": "/propertyowner-dashboard",
   "tenant": "/tenant-dashboard",
       '': '/', 
     };
