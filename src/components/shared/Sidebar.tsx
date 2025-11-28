@@ -34,6 +34,7 @@ const tenantNavItems = [
   { href: '/tenant-lease', label: 'My Lease', icon: FileText },
   { href: '/tenant/rent-status', label: 'Rent Status', icon: DollarSign },
   { href: '/tenant/maintenance', label: 'Maintenance', icon: Wrench },
+  { href: '/tenant-profile', label: 'Profile', icon: Users },
 ];
 
 const roleNavItems = {
