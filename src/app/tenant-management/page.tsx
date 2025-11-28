@@ -1,4 +1,5 @@
 "use client";
+
 import { Sidebar } from '@/components/shared/Sidebar';
 import TenantManagement from '@/components/TenantManagement';
 import { Header } from '@/components/shared/Header';
@@ -12,6 +13,7 @@ export default function TenantManagementPage() {
 
   return (
     <div className="flex h-screen overflow-hidden">
+      
       {/* Sidebar */}
       <div
         className={cn(
