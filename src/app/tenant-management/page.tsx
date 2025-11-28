@@ -21,7 +21,7 @@ export default function TenantManagementPage() {
       >
         <Sidebar 
           userRole="property-owner" 
-          onLogout={() => router.push('/pages/auth/login')}
+          onLogout={() => router.push('/login')}
           onNavigate={() => setIsMobileMenuOpen(false)}
         />
       </div>
