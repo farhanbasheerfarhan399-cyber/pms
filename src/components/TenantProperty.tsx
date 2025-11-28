@@ -46,78 +46,78 @@ export default function TenantProperty() {
 
         {/* Hero Card */}
         <Card className="overflow-hidden border-0 shadow-lg">
-          <div className="bg-linear-to-br from-blue-500 via-blue-600 to-purple-600 p-12 text-center text-white">
-            <div className="inline-block p-4 bg-white/20 rounded-full mb-4">
-              <Home className="w-12 h-12" />
+          <div className="bg-linear-to-br from-blue-500 via-blue-600 to-purple-600 p-6 text-center text-white">
+            <div className="inline-block p-3 bg-white/20 rounded-full mb-2">
+              <Home className="w-8 h-8" />
             </div>
-            <h2 className="text-4xl font-bold mb-2">{propertyData.unitNumber}</h2>
-            <p className="text-xl text-blue-100">{propertyData.buildingName}</p>
+            <h2 className="text-2xl font-bold mb-1">{propertyData.unitNumber}</h2>
+            <p className="text-base text-blue-100">{propertyData.buildingName}</p>
           </div>
 
           {/* Property Details Grid */}
-          <CardContent className="p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <CardContent className="p-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {/* Building */}
-              <div className="flex items-start gap-3">
-                <div className="p-2 bg-gray-100 rounded-lg mt-1">
-                  <Building2 className="w-5 h-5 text-gray-600" />
+              <div className="flex items-start gap-2">
+                <div className="p-1.5 bg-gray-100 rounded-lg mt-0.5">
+                  <Building2 className="w-4 h-4 text-gray-600" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600 mb-1">Building</p>
-                  <p className="text-lg font-semibold text-gray-900">{propertyData.buildingName}</p>
+                  <p className="text-xs text-gray-600 mb-0.5">Building</p>
+                  <p className="text-sm font-semibold text-gray-900">{propertyData.buildingName}</p>
                 </div>
               </div>
 
               {/* Unit */}
-              <div className="flex items-start gap-3">
-                <div className="p-2 bg-gray-100 rounded-lg mt-1">
-                  <Home className="w-5 h-5 text-gray-600" />
+              <div className="flex items-start gap-2">
+                <div className="p-1.5 bg-gray-100 rounded-lg mt-0.5">
+                  <Home className="w-4 h-4 text-gray-600" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600 mb-1">Unit</p>
-                  <p className="text-lg font-semibold text-gray-900">{propertyData.unitNumber}</p>
+                  <p className="text-xs text-gray-600 mb-0.5">Unit</p>
+                  <p className="text-sm font-semibold text-gray-900">{propertyData.unitNumber}</p>
                 </div>
               </div>
 
               {/* Floor */}
-              <div className="flex items-start gap-3">
-                <div className="p-2 bg-gray-100 rounded-lg mt-1">
-                  <MapPin className="w-5 h-5 text-gray-600" />
+              <div className="flex items-start gap-2">
+                <div className="p-1.5 bg-gray-100 rounded-lg mt-0.5">
+                  <MapPin className="w-4 h-4 text-gray-600" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600 mb-1">Floor</p>
-                  <p className="text-lg font-semibold text-gray-900">{propertyData.floor}</p>
+                  <p className="text-xs text-gray-600 mb-0.5">Floor</p>
+                  <p className="text-sm font-semibold text-gray-900">{propertyData.floor}</p>
                 </div>
               </div>
 
               {/* Size */}
-              <div className="flex items-start gap-3">
-                <div className="p-2 bg-gray-100 rounded-lg mt-1">
-                  <Square className="w-5 h-5 text-gray-600" />
+              <div className="flex items-start gap-2">
+                <div className="p-1.5 bg-gray-100 rounded-lg mt-0.5">
+                  <Square className="w-4 h-4 text-gray-600" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600 mb-1">Size</p>
-                  <p className="text-lg font-semibold text-gray-900">{propertyData.size}</p>
+                  <p className="text-xs text-gray-600 mb-0.5">Size</p>
+                  <p className="text-sm font-semibold text-gray-900">{propertyData.size}</p>
                 </div>
               </div>
             </div>
 
             {/* Address Section */}
-            <div className="mt-8 pt-8 border-t">
-              <h3 className="text-sm font-medium text-gray-600 mb-2">Address</h3>
-              <p className="text-lg text-gray-900">{propertyData.address}</p>
-              <p className="text-lg text-gray-900">{propertyData.city}</p>
+            <div className="mt-4 pt-4 border-t">
+              <h3 className="text-xs font-medium text-gray-600 mb-1">Address</h3>
+              <p className="text-sm text-gray-900">{propertyData.address}</p>
+              <p className="text-sm text-gray-900">{propertyData.city}</p>
             </div>
 
             {/* Property Type and Furnishing */}
-            <div className="mt-8 pt-8 border-t grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="mt-4 pt-4 border-t grid grid-cols-2 gap-4">
               <div>
-                <h3 className="text-sm font-medium text-gray-600 mb-2">Property Type</h3>
-                <p className="text-lg font-semibold text-gray-900">{propertyData.propertyType}</p>
+                <h3 className="text-xs font-medium text-gray-600 mb-1">Property Type</h3>
+                <p className="text-sm font-semibold text-gray-900">{propertyData.propertyType}</p>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-gray-600 mb-2">Furnishing</h3>
-                <p className="text-lg font-semibold text-gray-900">{propertyData.furnishing}</p>
+                <h3 className="text-xs font-medium text-gray-600 mb-1">Furnishing</h3>
+                <p className="text-sm font-semibold text-gray-900">{propertyData.furnishing}</p>
               </div>
             </div>
           </CardContent>
