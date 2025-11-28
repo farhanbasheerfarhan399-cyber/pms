@@ -22,15 +22,16 @@ const propertyOwnerNavItems = [
   { href: '/propertyowner-properties', label: 'Properties', icon: Building2 },
   { href: '/tenant-management', label: 'Tenants', icon: Users },
   { href: '/lease', label: 'Leases', icon: FileText },
-  { href: '/property-owner/rent-management', label: 'Rent Management', icon: DollarSign },
-  { href: '/property-owner/maintenance', label: 'Maintenance', icon: Wrench },
-  { href: '/property-owner/accounts', label: 'Accounts', icon: CreditCard },
+  { href: '/rentmanagement', label: 'Rent Management', icon: DollarSign },
+  { href: '/maintanance', label: 'Maintenance', icon: Wrench },
+  { href: '/accounts', label: 'Accounts', icon: CreditCard },
 ];
 
 // Navigation items for Tenant
 const tenantNavItems = [
   { href: '/tenant-dashboard', label: 'Dashboard', icon: Home },
-  { href: '/tenant/my-lease', label: 'My Lease', icon: FileText },
+  { href: '/tenant-property', label: 'My Properties', icon: Building2 },
+  { href: '/tenant-lease', label: 'My Lease', icon: FileText },
   { href: '/tenant/rent-status', label: 'Rent Status', icon: DollarSign },
   { href: '/tenant/maintenance', label: 'Maintenance', icon: Wrench },
 ];

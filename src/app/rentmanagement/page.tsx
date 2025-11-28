@@ -29,7 +29,7 @@ export default function managementpage() {
       >
         <Sidebar 
           userRole="property-owner" 
-            onLogout={()=> router.push('/app/login')}
+            onLogout={()=> router.push('/login')}
           onNavigate={() => setIsMobileMenuOpen(false)} 
           />
       </div>
