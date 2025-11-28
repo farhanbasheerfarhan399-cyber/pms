@@ -1,12 +1,13 @@
+// app/moveinout/page.tsx
 "use client";
 import { Sidebar } from '@/components/shared/Sidebar';
-import TenantManagement from '@/components/TenantManagement';
+import MoveInOutPhotos from '@/components/TenantMoveinout';
 import { Header } from '@/components/shared/Header';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
-export default function TenantManagementPage() {
+export default function MoveInOutPage() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -20,7 +21,7 @@ export default function TenantManagementPage() {
         )}
       >
         <Sidebar 
-          userRole="property-owner" 
+          userRole="tenant" 
           onLogout={() => router.push('/login')}
           onNavigate={() => setIsMobileMenuOpen(false)}
         />
@@ -29,9 +30,9 @@ export default function TenantManagementPage() {
       {/* Main Content */}
       <div className="flex flex-col flex-1 overflow-hidden">
         <Header />
-        <main className="flex-1 overflow-hidden">
-          <div className="h-full p-6">
-            <TenantManagement />
+        <main className="flex-1 overflow-auto">
+          <div className="h-full">
+            <MoveInOutPhotos />
           </div>
         </main>
       </div>

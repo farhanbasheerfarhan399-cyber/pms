@@ -6,10 +6,9 @@ import { Sidebar } from '@/components/shared/Sidebar';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
-import AccountManagement from '@/components/accounts';
+import MaintenanceDashboard from '@/components/maintanance';
 
-
-export default function accountspage() {
+export default function maintanancepage() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -39,7 +38,7 @@ export default function accountspage() {
         <Header />
         <main className="flex-1 overflow-y-auto p-6">
           <div className="max-w-7xl mx-auto">
-            <AccountManagement />
+            <MaintenanceDashboard />
           </div>
         </main>
       </div>

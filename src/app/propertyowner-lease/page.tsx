@@ -1,12 +1,12 @@
 "use client";
 import { Sidebar } from '@/components/shared/Sidebar';
-import TenantManagement from '@/components/TenantManagement';
+import LeaseManagement from '@/components/LeaseManagement';
 import { Header } from '@/components/shared/Header';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
-export default function TenantManagementPage() {
+export default function LeasePage() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -31,7 +31,7 @@ export default function TenantManagementPage() {
         <Header />
         <main className="flex-1 overflow-hidden">
           <div className="h-full p-6">
-            <TenantManagement />
+            <LeaseManagement />
           </div>
         </main>
       </div>
