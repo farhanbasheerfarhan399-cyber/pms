@@ -1,7 +1,5 @@
-// src/app/pages/property-owner/Dashboard.tsx
-'use client';
 
-import * as React from 'react';
+import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -54,12 +52,12 @@ export function PropertyOwnerDashboard() {
 
   // Mock data for rent collection chart
   const rentCollectionData = [
-    { month: 'Jan', amount: 42000 },
-    { month: 'Feb', amount: 47000 },
-    { month: 'Mar', amount: 49000 },
-    { month: 'Apr', amount: 45000 },
-    { month: 'May', amount: 51000 },
-    { month: 'Jun', amount: 55000 },
+    { month: 'Jan', collected: 42000, pending: 3000 },
+    { month: 'Feb', collected: 47000, pending: 2500 },
+    { month: 'Mar', collected: 49000, pending: 2000 },
+    { month: 'Apr', collected: 45000, pending: 3500 },
+    { month: 'May', collected: 51000, pending: 2800 },
+    { month: 'Jun', collected: 55000, pending: 1500 },
   ];
 
   // Mock data for maintenance costs chart
@@ -109,29 +107,26 @@ export function PropertyOwnerDashboard() {
   ];
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-4 sm:space-y-6 p-4">
       {/* Page Header */}
       <div className="px-1">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Dashboard Overview</h1>
         <p className="text-sm sm:text-base text-gray-600 mt-1">Track your property portfolio performance</p>
       </div>
 
-      {/* Stats Cards */}
+      {/* Stats Cards - Reduced Height */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {/* Total Properties */}
         <Card className="border hover:shadow-lg transition-shadow">
-          <CardContent className="p-4 sm:p-6">
+          <CardContent className="p-3 sm:p-4 pt-2">
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Total Properties</p>
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{stats.totalProperties.value}</h3>
-                <div className="flex items-center gap-1">
-                  <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
-                  <p className="text-xs sm:text-sm text-green-600 font-medium">{stats.totalProperties.change}</p>
-                </div>
+                <p className="text-sm font-medium text-gray-600 mb-2">Total Properties</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">{stats.totalProperties.value}</h3>
+                <p className="text-sm text-green-600 font-medium">{stats.totalProperties.change}</p>
               </div>
-              <div className="bg-blue-100 p-2 sm:p-3 rounded-lg">
-                <Building2 className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+              <div className="bg-blue-100 p-2 rounded-lg">
+                <Building2 className="w-5 h-5 text-blue-600" />
               </div>
             </div>
           </CardContent>
@@ -139,18 +134,15 @@ export function PropertyOwnerDashboard() {
 
         {/* Total Tenants */}
         <Card className="border hover:shadow-lg transition-shadow">
-          <CardContent className="p-4 sm:p-6">
+          <CardContent className="p-3 sm:p-4">
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Total Tenants</p>
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{stats.totalTenants.value}</h3>
-                <div className="flex items-center gap-1">
-                  <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
-                  <p className="text-xs sm:text-sm text-green-600 font-medium">{stats.totalTenants.change}</p>
-                </div>
+                <p className="text-sm font-medium text-gray-600 mb-2">Total Tenants</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">{stats.totalTenants.value}</h3>
+                <p className="text-sm text-green-600 font-medium">{stats.totalTenants.change}</p>
               </div>
-              <div className="bg-blue-100 p-2 sm:p-3 rounded-lg">
-                <Users className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+              <div className="bg-blue-100 p-2 rounded-lg">
+                <Users className="w-5 h-5 text-blue-600" />
               </div>
             </div>
           </CardContent>
@@ -158,20 +150,17 @@ export function PropertyOwnerDashboard() {
 
         {/* Monthly Revenue */}
         <Card className="border hover:shadow-lg transition-shadow">
-          <CardContent className="p-4 sm:p-6">
+          <CardContent className="p-3 sm:p-4">
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Monthly Revenue</p>
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+                <p className="text-sm font-medium text-gray-600 mb-2">Monthly Revenue</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
                   ${stats.monthlyRevenue.value.toLocaleString()}
                 </h3>
-                <div className="flex items-center gap-1">
-                  <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
-                  <p className="text-xs sm:text-sm text-green-600 font-medium">{stats.monthlyRevenue.change}</p>
-                </div>
+                <p className="text-sm text-green-600 font-medium">{stats.monthlyRevenue.change}</p>
               </div>
-              <div className="bg-blue-100 p-2 sm:p-3 rounded-lg">
-                <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+              <div className="bg-blue-100 p-2 rounded-lg">
+                <DollarSign className="w-5 h-5 text-blue-600" />
               </div>
             </div>
           </CardContent>
@@ -179,59 +168,70 @@ export function PropertyOwnerDashboard() {
 
         {/* Pending Maintenance */}
         <Card className="border hover:shadow-lg transition-shadow">
-          <CardContent className="p-4 sm:p-6">
+          <CardContent className="p-3 sm:p-4">
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Pending Maintenance</p>
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{stats.pendingMaintenance.value}</h3>
-                <div className="flex items-center gap-1">
-                  <ArrowDownRight className="w-3 h-3 sm:w-4 sm:h-4 text-red-600" />
-                  <p className="text-xs sm:text-sm text-red-600 font-medium">{stats.pendingMaintenance.change}</p>
-                </div>
+                <p className="text-sm font-medium text-gray-600 mb-2">Pending Maintenance</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">{stats.pendingMaintenance.value}</h3>
+                <p className="text-sm text-red-600 font-medium">{stats.pendingMaintenance.change}</p>
               </div>
-              <div className="bg-blue-100 p-2 sm:p-3 rounded-lg">
-                <Wrench className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+              <div className="bg-blue-100 p-2 rounded-lg">
+                <Wrench className="w-5 h-5 text-blue-600" />
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Charts Section */}
+      {/* Charts Section - Reduced Height */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Rent Collection Overview */}
         <Card className="border">
-          <CardHeader className="pb-3 sm:pb-4">
-            <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+          <CardHeader className="pb-2 sm:pb-3">
+            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
               Rent Collection Overview
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pt-0">
             {!mounted ? (
-              <div className="h-64 sm:h-80 w-full flex items-center justify-center bg-gray-50 rounded-lg">
-                <p className="text-gray-500">Loading chart...</p>
+              <div className="h-48 sm:h-56 w-full flex items-center justify-center bg-gray-50 rounded-lg">
+                <p className="text-gray-500 text-sm">Loading chart...</p>
               </div>
             ) : (
-              <div className="h-64 sm:h-80 w-full">
+              <div className="h-48 sm:h-56 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={rentCollectionData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                     <XAxis 
                       dataKey="month" 
-                      tick={{ fontSize: 12 }}
+                      tick={{ fontSize: 11 }}
                       stroke="#9ca3af"
                     />
                     <YAxis 
-                      tick={{ fontSize: 12 }}
+                      tick={{ fontSize: 11 }}
                       stroke="#9ca3af"
                       tickFormatter={(value) => `${value / 1000}k`}
                     />
                     <Tooltip 
-                      formatter={(value: number) => [`${value.toLocaleString()}`, 'Amount']}
-                      contentStyle={{ borderRadius: '8px', border: '1px solid #e5e7eb' }}
+                      content={({ active, payload }) => {
+                        if (active && payload && payload.length) {
+                          return (
+                            <div className="bg-white p-3 rounded-lg shadow-lg border border-gray-200">
+                              <p className="font-semibold text-gray-900 mb-2">{payload[0].payload.month}</p>
+                              <p className="text-sm text-blue-600">
+                                collected : {payload[0].value?.toLocaleString()}
+                              </p>
+                              <p className="text-sm text-orange-600">
+                                pending : {payload[1].value?.toLocaleString()}
+                              </p>
+                            </div>
+                          );
+                        }
+                        return null;
+                      }}
                     />
-                    <Bar dataKey="amount" fill="#3b82f6" radius={[8, 8, 0, 0]} />
+                    <Bar dataKey="collected" stackId="a" fill="#3b82f6" radius={[0, 0, 0, 0]} />
+                    <Bar dataKey="pending" stackId="a" fill="#fb923c" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -241,43 +241,42 @@ export function PropertyOwnerDashboard() {
 
         {/* Maintenance Costs */}
         <Card className="border">
-          <CardHeader className="pb-3 sm:pb-4">
-            <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-              <Wrench className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+          <CardHeader className="pb-2 sm:pb-3">
+            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
               Maintenance Costs
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pt-0">
             {!mounted ? (
-              <div className="h-64 sm:h-80 w-full flex items-center justify-center bg-gray-50 rounded-lg">
-                <p className="text-gray-500">Loading chart...</p>
+              <div className="h-48 sm:h-56 w-full flex items-center justify-center bg-gray-50 rounded-lg">
+                <p className="text-gray-500 text-sm">Loading chart...</p>
               </div>
             ) : (
-              <div className="h-64 sm:h-80 w-full">
+              <div className="h-48 sm:h-56 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={maintenanceCostsData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                     <XAxis 
                       dataKey="month" 
-                      tick={{ fontSize: 12 }}
+                      tick={{ fontSize: 11 }}
                       stroke="#9ca3af"
                     />
                     <YAxis 
-                      tick={{ fontSize: 12 }}
+                      tick={{ fontSize: 11 }}
                       stroke="#9ca3af"
                       tickFormatter={(value) => `${value / 1000}k`}
                     />
                     <Tooltip 
-                      formatter={(value: number) => [`${value.toLocaleString()}`, 'Cost']}
-                      contentStyle={{ borderRadius: '8px', border: '1px solid #e5e7eb' }}
+                      formatter={(value) => [`$${value.toLocaleString()}`, 'Cost']}
+                      contentStyle={{ borderRadius: '8px', border: '1px solid #e5e7eb', fontSize: '12px' }}
                     />
                     <Line 
                       type="monotone" 
                       dataKey="cost" 
                       stroke="#f97316" 
-                      strokeWidth={3}
-                      dot={{ fill: '#f97316', r: 5 }}
-                      activeDot={{ r: 7 }}
+                      strokeWidth={2}
+                      dot={{ fill: '#f97316', r: 4 }}
+                      activeDot={{ r: 6 }}
                     />
                   </LineChart>
                 </ResponsiveContainer>
@@ -287,33 +286,30 @@ export function PropertyOwnerDashboard() {
         </Card>
       </div>
 
-      {/* Recent Activities */}
+      {/* Recent Activities - Reduced Height */}
       <Card className="border">
-        <CardHeader className="pb-3 sm:pb-4">
-          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-            <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+        <CardHeader className="pb-2 sm:pb-3">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <Clock className="w-4 h-4 text-blue-600" />
             Recent Activities
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="space-y-3 sm:space-y-4">
+        <CardContent className="pt-0">
+          <div className="space-y-2">
             {recentActivities.map((activity, index) => (
               <div 
                 key={index}
-                className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                className="flex items-start gap-3 p-2.5 sm:p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
               >
-                <div className={`${activity.bgColor} p-2 sm:p-2.5 rounded-lg shrink-0`}>
-                  <activity.icon className={`w-4 h-4 sm:w-5 sm:h-5 ${activity.iconColor}`} />
-                </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-sm sm:text-base text-gray-900 mb-0.5">
+                  <h4 className="font-semibold text-sm text-gray-900 mb-0.5">
                     {activity.title}
                   </h4>
-                  <p className="text-xs sm:text-sm text-gray-600 truncate">
+                  <p className="text-xs text-gray-600 truncate">
                     {activity.description}
                   </p>
                 </div>
-                <span className="text-xs sm:text-sm text-gray-500 whitespace-nowrap">
+                <span className="text-xs text-gray-500 whitespace-nowrap">
                   {activity.time}
                 </span>
               </div>

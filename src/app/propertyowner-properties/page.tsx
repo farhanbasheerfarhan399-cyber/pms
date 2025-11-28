@@ -1,24 +1,22 @@
-// src/app/pages/property-owner/page.tsx
 'use client';
 
 import { Header } from '@/components/shared/Header';
 import { Sidebar } from '@/components/shared/Sidebar';
-import { PropertyOwnerDashboard } from '@/components/PropertyDashboard';
+import PropertyManagement from '@/components/Properties';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-export default function PropertyOwnerPage() {
+export default function PropertyPage() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
     // Clear authentication data if needed
     // localStorage.removeItem('authToken');
-    // sessionStorage.clear();
-    router.push('/pages/auth/login');
+    router.push('/login');
   };
 
   return (
@@ -41,13 +39,13 @@ export default function PropertyOwnerPage() {
         />
       )}
 
-      {/* Sidebar with mobile responsive wrapper */}
+      {/* Sidebar */}
       <div
         className={cn(
           "fixed md:sticky top-0 left-0 z-40 transition-transform duration-300 ease-in-out",
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         )}
-      >
+      > 
         <Sidebar 
           userRole="property-owner" 
           onLogout={handleLogout}
@@ -60,7 +58,7 @@ export default function PropertyOwnerPage() {
         <Header />
         <main className="flex-1 overflow-y-auto p-6">
           <div className="max-w-7xl mx-auto">
-            <PropertyOwnerDashboard />
+            <PropertyManagement />
           </div>
         </main>
       </div>
