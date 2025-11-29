@@ -136,7 +136,7 @@ const LeaseManagement = () => {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="flex justify-between items-start mb-6 flex-shrink-0">
+      <div className="flex justify-between items-start mb-6 shrink-0">
         <div>
           <h1 className="text-3xl font-semibold text-gray-900 mb-1">Lease Management</h1>
           <p className="text-gray-600 text-sm">Manage lease agreements and renewals</p>
@@ -150,7 +150,7 @@ const LeaseManagement = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-3 gap-4 mb-6 flex-shrink-0">
+      <div className="grid grid-cols-3 gap-4 mb-6 shrink-0">
         <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
           <div className="flex justify-between items-start">
             <div>
@@ -197,7 +197,7 @@ const LeaseManagement = () => {
       {/* Main Content */}
       <div className="bg-white rounded-xl shadow-sm flex flex-col flex-1 min-h-0">
         {/* Tabs */}
-        <div className="px-6 py-4 border-b border-gray-200 flex-shrink-0">
+        <div className="px-6 py-4 border-b border-gray-200 shrink-0">
           <div className="flex gap-6">
             <button
               onClick={() => setActiveTab('all')}
@@ -233,7 +233,7 @@ const LeaseManagement = () => {
         </div>
 
         {/* Section Header */}
-        <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center flex-shrink-0">
+        <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center shrink-0">
           <h2 className="text-lg font-semibold text-gray-900">All Lease Agreements</h2>
           <input
             type="text"
@@ -266,7 +266,7 @@ const LeaseManagement = () => {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-start gap-2">
-                      <svg className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
                       </svg>
@@ -278,7 +278,7 @@ const LeaseManagement = () => {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-start gap-2">
-                      <svg className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                         <line x1="16" y1="2" x2="16" y2="6"></line>
                         <line x1="8" y1="2" x2="8" y2="6"></line>

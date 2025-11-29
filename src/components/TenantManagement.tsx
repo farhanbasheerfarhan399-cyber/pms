@@ -141,7 +141,7 @@ const TenantManagement = () => {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="flex justify-between items-start mb-6 flex-shrink-0">
+      <div className="flex justify-between items-start mb-6 shrink-0">
         <div>
           <h1 className="text-3xl font-semibold text-gray-900 mb-1">Tenant Management</h1>
           <p className="text-gray-600 text-sm">Manage your tenants and their information</p>
@@ -157,7 +157,7 @@ const TenantManagement = () => {
       {/* Main Content */}
       <div className="bg-white rounded-xl shadow-sm flex flex-col flex-1 min-h-0">
         {/* Section Header */}
-        <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center flex-shrink-0">
+        <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center shrink-0">
           <div className="flex items-center gap-3">
             <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -195,7 +195,7 @@ const TenantManagement = () => {
                 <tr key={tenant.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
                   <td className="px-4 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-sm shrink-0">
                         {tenant.initials}
                       </div>
                       <span className="font-medium text-gray-900 whitespace-nowrap">{tenant.name}</span>
@@ -204,14 +204,14 @@ const TenantManagement = () => {
                   <td className="px-4 py-4">
                     <div className="flex flex-col gap-1">
                       <div className="flex items-center gap-2 text-gray-600 text-sm">
-                        <svg className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <svg className="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                           <rect x="2" y="4" width="20" height="16" rx="2"></rect>
                           <path d="m2 7 10 7 10-7"></path>
                         </svg>
                         <span className="whitespace-nowrap">{tenant.email}</span>
                       </div>
                       <div className="flex items-center gap-2 text-gray-600 text-sm">
-                        <svg className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <svg className="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                         </svg>
                         <span className="whitespace-nowrap">{tenant.phone}</span>
@@ -220,7 +220,7 @@ const TenantManagement = () => {
                   </td>
                   <td className="px-4 py-4">
                     <div className="flex items-start gap-2">
-                      <svg className="w-3.5 h-3.5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <svg className="w-3.5 h-3.5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
                       </svg>
