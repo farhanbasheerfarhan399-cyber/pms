@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import { 
   DollarSign, TrendingUp, TrendingDown, Users, Search, Filter, 
@@ -71,12 +72,12 @@ const ShadcnDialog = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-0">
       <div 
         className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" 
         onClick={onClose}
       />
-      <div className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-slate-200 bg-white p-6 shadow-lg duration-200 sm:rounded-lg">
+      <div className="relative z-50 grid w-full max-w-lg gap-4 border border-slate-200 bg-white p-4 sm:p-6 shadow-lg duration-200 rounded-lg sm:rounded-lg max-h-[90vh] overflow-y-auto">
         <div className="flex flex-col space-y-1.5 text-center sm:text-left">
           <h2 className="text-lg font-semibold leading-none tracking-tight text-slate-950">{title}</h2>
           {description && <p className="text-sm text-slate-500">{description}</p>}
@@ -92,7 +93,7 @@ const ShadcnDialog = ({
           <span className="sr-only">Close</span>
         </button>
         {footer && (
-          <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
+          <div className="flex flex-col-reverse gap-2 sm:gap-0 sm:flex-row sm:justify-end sm:space-x-2">
             {footer}
           </div>
         )}
@@ -102,7 +103,7 @@ const ShadcnDialog = ({
 };
 
 const ShadcnLabel = ({ children }: { children: React.ReactNode }) => (
-  <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2 block">
+  <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2 block sm:mb-0">
     {children}
   </label>
 );
@@ -127,7 +128,7 @@ const ShadcnButton = ({
   children, 
   ...props 
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'default' | 'outline' }) => {
-  const baseStyles = "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2";
+  const baseStyles = "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 whitespace-nowrap";
   const variants = {
     default: "bg-slate-900 text-slate-50 hover:bg-slate-900/90",
     outline: "border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900 text-slate-900"
@@ -151,7 +152,7 @@ export default function AccountManagement() {
     recordReceipt: false,
   });
 
-  // --- DATA STATES (Now using useState so we can update them) ---
+  // --- DATA STATES ---
   const [stats] = useState<Stat[]>([
     { label: 'Total Rent Collected', value: '$45,680', change: '+12.5%', trend: 'up', icon: TrendingUp },
     { label: 'Pending Payments', value: '$8,450', change: '-5.2%', trend: 'down', icon: TrendingDown },
@@ -173,7 +174,7 @@ export default function AccountManagement() {
     { id: 1, tenant: 'John Smith', unit: 'A-101', issue: 'Broken Faucet', amount: 150, status: 'Received', date: '2024-11-10' },
   ]);
 
-  // --- FORM STATES (To hold input data) ---
+  // --- FORM STATES ---
   const [paymentForm, setPaymentForm] = useState({ tenant: '', unit: '', amount: '', date: '' });
   const [transferForm, setTransferForm] = useState({ worker: '', issue: '', amount: '', status: 'Pending' });
   const [receiptForm, setReceiptForm] = useState({ tenant: '', unit: '', issue: '', amount: '', date: '' });
@@ -193,14 +194,14 @@ export default function AccountManagement() {
       id: Date.now(),
       tenant: paymentForm.tenant,
       unit: paymentForm.unit,
-      leaseAmount: Number(paymentForm.amount), // Assuming full payment for simplicity
+      leaseAmount: Number(paymentForm.amount), 
       paidAmount: Number(paymentForm.amount),
       pendingAmount: 0,
       status: 'Paid',
       date: paymentForm.date || new Date().toISOString().split('T')[0]
     };
     setRentPayments([newPayment, ...rentPayments]);
-    setPaymentForm({ tenant: '', unit: '', amount: '', date: '' }); // Reset form
+    setPaymentForm({ tenant: '', unit: '', amount: '', date: '' }); 
     closeDialog('recordPayment');
   };
 
@@ -248,21 +249,21 @@ export default function AccountManagement() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
       {/* Page Heading */}
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-slate-900">Accounts</h1>
-        <p className="text-gray-600 mt-1">Manage all financial transactions and payments</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Accounts</h1>
+        <p className="text-sm sm:text-base text-gray-600 mt-1">Manage all financial transactions and payments</p>
       </div>
 
       {/* Tab Navigation */}
-      <div className="mb-6">
-        <div className="flex space-x-2 border-b border-gray-200">
+      <div className="mb-6 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="flex space-x-2 border-b border-gray-200 min-w-max">
           {(['overview', 'rent', 'transfers', 'receipts'] as TabType[]).map((tab) => (
             <button 
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-6 py-3 font-medium transition capitalize ${
+              className={`px-4 sm:px-6 py-3 font-medium transition capitalize whitespace-nowrap text-sm sm:text-base ${
                 activeTab === tab 
                   ? 'text-slate-900 border-b-2 border-slate-900' 
                   : 'text-gray-500 hover:text-slate-900'
@@ -277,7 +278,7 @@ export default function AccountManagement() {
       {/* Overview Tab */}
       {activeTab === 'overview' && (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
             {stats.map((stat, idx) => (
               <div key={idx} className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
                 <div className="flex items-center justify-between mb-4">
@@ -294,7 +295,7 @@ export default function AccountManagement() {
 
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-8">
             <h3 className="text-xl font-bold text-slate-900 mb-4">Quick Actions</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               <button onClick={() => openDialog('recordPayment')} className="flex items-center justify-center space-x-2 bg-slate-900 text-white px-6 py-3 rounded-lg hover:bg-slate-800 transition">
                 <Plus className="w-5 h-5" />
                 <span>Record Payment</span>
@@ -315,22 +316,22 @@ export default function AccountManagement() {
       {/* Rent Payments Tab */}
       {activeTab === 'rent' && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-          <div className="p-6 border-b border-gray-200 flex justify-between items-center">
+          <div className="p-4 sm:p-6 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
             <h3 className="text-xl font-bold text-slate-900">Rent Payment Details</h3>
-            <ShadcnButton onClick={() => openDialog('recordPayment')}>
+            <ShadcnButton onClick={() => openDialog('recordPayment')} className="w-full sm:w-auto">
               <Plus className="w-4 h-4 mr-2" /> Record Payment
             </ShadcnButton>
           </div>
-          <div className="p-6">
-            <div className="flex items-center space-x-4 mb-6">
+          <div className="p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 mb-6">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
                 <ShadcnInput placeholder="Search by tenant..." className="pl-9" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
               </div>
               <ShadcnButton variant="outline"><Filter className="w-4 h-4 mr-2" /> Filter</ShadcnButton>
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full">
+            <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+              <table className="w-full min-w-[800px]">
                 <thead className="bg-slate-50 border-b border-slate-200">
                   <tr>
                     {['Tenant', 'Unit', 'Lease', 'Paid', 'Pending', 'Status', 'Date'].map(h => (
@@ -365,14 +366,14 @@ export default function AccountManagement() {
       {/* Transfers Tab */}
       {activeTab === 'transfers' && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-           <div className="p-6 border-b border-gray-200 flex justify-between items-center">
+           <div className="p-4 sm:p-6 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
             <h3 className="text-xl font-bold text-slate-900">Transfers</h3>
-            <ShadcnButton onClick={() => openDialog('newTransfer')}>
+            <ShadcnButton onClick={() => openDialog('newTransfer')} className="w-full sm:w-auto">
               <Plus className="w-4 h-4 mr-2" /> New Transfer
             </ShadcnButton>
           </div>
-          <div className="p-6 overflow-x-auto">
-            <table className="w-full">
+          <div className="p-4 sm:p-6 overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+            <table className="w-full min-w-[700px]">
                 <thead className="bg-slate-50 border-b border-slate-200">
                   <tr>
                     {['Worker', 'Issue', 'Amount', 'Status', 'Date'].map(h => (
@@ -403,14 +404,14 @@ export default function AccountManagement() {
       {/* Receipts Tab */}
       {activeTab === 'receipts' && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-           <div className="p-6 border-b border-gray-200 flex justify-between items-center">
+           <div className="p-4 sm:p-6 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
             <h3 className="text-xl font-bold text-slate-900">Receipts</h3>
-            <ShadcnButton onClick={() => openDialog('recordReceipt')}>
+            <ShadcnButton onClick={() => openDialog('recordReceipt')} className="w-full sm:w-auto">
               <Plus className="w-4 h-4 mr-2" /> Record Receipt
             </ShadcnButton>
           </div>
-          <div className="p-6 overflow-x-auto">
-             <table className="w-full">
+          <div className="p-4 sm:p-6 overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+             <table className="w-full min-w-[700px]">
                 <thead className="bg-slate-50 border-b border-slate-200">
                   <tr>
                     {['Tenant', 'Unit', 'Issue', 'Amount', 'Status', 'Date'].map(h => (
@@ -454,9 +455,9 @@ export default function AccountManagement() {
         }
       >
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4">
             <ShadcnLabel>Tenant</ShadcnLabel>
-            <div className="col-span-3">
+            <div className="col-span-1 sm:col-span-3">
               <ShadcnInput 
                 placeholder="John Doe" 
                 value={paymentForm.tenant}
@@ -464,9 +465,9 @@ export default function AccountManagement() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4">
             <ShadcnLabel>Unit</ShadcnLabel>
-            <div className="col-span-3">
+            <div className="col-span-1 sm:col-span-3">
               <ShadcnInput 
                 placeholder="A-101" 
                 value={paymentForm.unit}
@@ -474,9 +475,9 @@ export default function AccountManagement() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4">
             <ShadcnLabel>Amount</ShadcnLabel>
-            <div className="col-span-3">
+            <div className="col-span-1 sm:col-span-3">
               <ShadcnInput 
                 type="number" 
                 placeholder="0.00" 
@@ -485,9 +486,9 @@ export default function AccountManagement() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4">
             <ShadcnLabel>Date</ShadcnLabel>
-            <div className="col-span-3">
+            <div className="col-span-1 sm:col-span-3">
               <ShadcnInput 
                 type="date"
                 value={paymentForm.date}
@@ -511,9 +512,9 @@ export default function AccountManagement() {
         }
       >
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4">
             <ShadcnLabel>Worker</ShadcnLabel>
-            <div className="col-span-3">
+            <div className="col-span-1 sm:col-span-3">
               <ShadcnInput 
                 placeholder="Company or Name" 
                 value={transferForm.worker}
@@ -521,9 +522,9 @@ export default function AccountManagement() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4">
             <ShadcnLabel>Issue</ShadcnLabel>
-            <div className="col-span-3">
+            <div className="col-span-1 sm:col-span-3">
               <ShadcnTextArea 
                 placeholder="Describe the issue..." 
                 value={transferForm.issue}
@@ -531,9 +532,9 @@ export default function AccountManagement() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4">
             <ShadcnLabel>Amount</ShadcnLabel>
-            <div className="col-span-3">
+            <div className="col-span-1 sm:col-span-3">
               <ShadcnInput 
                 type="number" 
                 placeholder="0.00" 
@@ -558,9 +559,9 @@ export default function AccountManagement() {
         }
       >
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4">
             <ShadcnLabel>Tenant</ShadcnLabel>
-            <div className="col-span-3">
+            <div className="col-span-1 sm:col-span-3">
               <ShadcnInput 
                 placeholder="Name" 
                 value={receiptForm.tenant}
@@ -568,9 +569,9 @@ export default function AccountManagement() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4">
             <ShadcnLabel>Unit</ShadcnLabel>
-            <div className="col-span-3">
+            <div className="col-span-1 sm:col-span-3">
               <ShadcnInput 
                 placeholder="Unit Number" 
                 value={receiptForm.unit}
@@ -578,9 +579,9 @@ export default function AccountManagement() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4">
             <ShadcnLabel>Issue</ShadcnLabel>
-            <div className="col-span-3">
+            <div className="col-span-1 sm:col-span-3">
               <ShadcnInput 
                 placeholder="Broken Window, etc." 
                 value={receiptForm.issue}
@@ -588,9 +589,9 @@ export default function AccountManagement() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4">
             <ShadcnLabel>Amount</ShadcnLabel>
-            <div className="col-span-3">
+            <div className="col-span-1 sm:col-span-3">
               <ShadcnInput 
                 type="number" 
                 placeholder="0.00" 
