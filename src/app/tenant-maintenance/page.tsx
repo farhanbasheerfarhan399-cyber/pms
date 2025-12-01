@@ -1,6 +1,6 @@
 import MaintenanceRequests from "@/components/TenantMaintenance";
 import RootLayout from "../layout";
-import DashboardLayout from "@/components/Shared/layout";
+import DashboardLayout from "@/components/shared/layout";
 
 
 

@@ -1,4 +1,4 @@
-import DashboardLayout from "@/components/Shared/layout";
+import DashboardLayout from "@/components/shared/layout";
 import { TenantDashboard } from "@/components/TenantDashboard";
 
 

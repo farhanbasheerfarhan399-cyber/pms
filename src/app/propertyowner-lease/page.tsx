@@ -1,13 +1,5 @@
 import LeaseManagement from "@/components/LeaseManagement";
-import DashboardLayout from "@/components/Shared/layout";
-
-
-
-
-
-
- 
-
+import DashboardLayout from "@/components/shared/layout";
 
 
 export default function leasepage() {

@@ -1,13 +1,6 @@
 import RentPayments from "@/components/RentPayment";
 import RootLayout from "../layout";
-import DashboardLayout from "@/components/Shared/layout";
-
-
-
-
-
-
-
+import DashboardLayout from "@/components/shared/layout";
 
 
 

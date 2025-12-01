@@ -1,11 +1,6 @@
 import TenantProfile from "@/components/TenantProfile";
 import RootLayout from "../layout";
-import DashboardLayout from "@/components/Shared/layout";
-
-
-
-
-
+import DashboardLayout from "@/components/shared/layout";
 
 
 

@@ -1,5 +1,5 @@
 import RentPaymentTracker from "@/components/rentmanagement";
-import DashboardLayout from "@/components/Shared/layout";
+import DashboardLayout from "@/components/shared/layout";
 
 
 

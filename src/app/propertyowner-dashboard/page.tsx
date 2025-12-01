@@ -1,12 +1,5 @@
 import { PropertyOwnerDashboard } from "@/components/PropertyDashboard";
-import DashboardLayout from "@/components/Shared/layout";
-
-
-
-
- 
-
-
+import DashboardLayout from "@/components/shared/layout";
 
 export default function dashboard() {
   return (
