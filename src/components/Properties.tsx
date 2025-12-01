@@ -1,4 +1,3 @@
-
 'use client';
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -16,12 +15,12 @@ import {
   ArrowLeft
 } from 'lucide-react';
 
-// Type definitions
+// Type definition - MUST MATCH PropertyForm.tsx
 interface PropertyFormData {
   name: string;
   address: string;
   floors: string;
-  units: string;
+  floorUnits: { [key: number]: string };
   image: string;
 }
 
@@ -146,6 +145,12 @@ export default function PropertyManagement() {
   const [properties, setProperties] = useState<Property[]>(mockProperties);
 
   const handleAddProperty = (data: PropertyFormData) => {
+    // Calculate total units from floorUnits
+    const totalUnits = Object.values(data.floorUnits).reduce(
+      (sum, units) => sum + parseInt(units || '0'), 
+      0
+    );
+
     if (editingProperty) {
       // Edit existing property
       const updatedProperties = properties.map(prop => 
@@ -156,7 +161,7 @@ export default function PropertyManagement() {
               address: data.address,
               image: data.image || prop.image,
               floors: parseInt(data.floors),
-              units: parseInt(data.units),
+              units: totalUnits,
             }
           : prop
       );
@@ -170,7 +175,7 @@ export default function PropertyManagement() {
           address: data.address,
           image: data.image || selectedProperty.image,
           floors: parseInt(data.floors),
-          units: parseInt(data.units),
+          units: totalUnits,
         });
       }
     } else {
@@ -181,10 +186,10 @@ export default function PropertyManagement() {
         address: data.address,
         image: data.image || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400',
         floors: parseInt(data.floors),
-        units: parseInt(data.units),
+        units: totalUnits,
         occupied: 0,
         tenants: 0,
-        vacant: parseInt(data.units),
+        vacant: totalUnits,
         units_list: []
       };
       setProperties([...properties, newProperty]);

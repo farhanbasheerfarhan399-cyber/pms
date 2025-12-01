@@ -6,7 +6,7 @@ import { Bell, Search, LogOut, Settings, User, Building2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,16 +17,34 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-// Placeholder User Data - Update based on logged-in user
-const user = {
-  name: 'John Smith',
-  role: 'Property Owner', // or 'Tenant'
-  properties: '3 Properties', // Optional: for property owners
-  initials: 'JS',
-};
+interface HeaderProps {
+  userRole?: 'property-owner' | 'tenant';
+  userName?: string;
+  userInitials?: string;
+}
 
-export function Header() {
+export function Header({ 
+  userRole, 
+  userName = 'John Smith',
+  userInitials = 'JS'
+}: HeaderProps) {
   const router = useRouter();
+  const pathname = usePathname();
+
+  // Detect user role from pathname if not provided as prop
+  const detectedRole = React.useMemo(() => {
+    if (userRole) return userRole;
+    
+    if (pathname.includes('propertyowner') || pathname.includes('property-owner')) {
+      return 'property-owner';
+    } else if (pathname.includes('tenant')) {
+      return 'tenant';
+    }
+    return 'property-owner'; // default
+  }, [pathname, userRole]);
+
+  // Set role display text
+  const roleDisplay = detectedRole === 'property-owner' ? 'Property Owner' : 'Tenant';
 
   const handleLogout = () => {
     // Clear any stored authentication data (tokens, user data, etc.)
@@ -34,7 +52,7 @@ export function Header() {
     // sessionStorage.clear();
     
     // Redirect to login page
-    router.push('/pages/auth/login');
+    router.push('/login');
   };
 
   return (
@@ -43,7 +61,6 @@ export function Header() {
       {/* Logo/Title Section */}
       <div className="flex items-center space-x-2">
         <Building2 className="h-6 w-6 text-blue-600" />
-        <h1 className="text-xl font-bold text-gray-900 hidden sm:block">My Dashboard</h1>
       </div>
       
       {/* Search Bar */}
@@ -51,7 +68,9 @@ export function Header() {
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <Input
           type="search"
-          placeholder="Search properties, tenants..."
+          placeholder={detectedRole === 'property-owner' 
+            ? "Search properties, tenants..." 
+            : "Search properties, leases..."}
           className="w-full rounded-lg bg-gray-50 pl-9 focus-visible:ring-blue-200 focus-visible:border-blue-500 h-10"
         />
       </div>
@@ -74,12 +93,12 @@ export function Header() {
             >
               <div className="flex items-center space-x-3">
                 <div className="text-right hidden sm:block">
-                  <p className="text-sm font-semibold leading-none">{user.name}</p>
-                  <p className="text-xs text-muted-foreground">{user.role}</p>
+                  <p className="text-sm font-semibold leading-none">{userName}</p>
+                  <p className="text-xs text-muted-foreground">{roleDisplay}</p>
                 </div>
                 <Avatar className="h-10 w-10 border-2 border-blue-600">
                   <AvatarFallback className="bg-blue-600 text-white font-bold text-base">
-                    {user.initials}
+                    {userInitials}
                   </AvatarFallback>
                 </Avatar>
               </div>
@@ -88,15 +107,19 @@ export function Header() {
           <DropdownMenuContent className="w-56" align="end" forceMount>
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium leading-none">{user.name}</p>
+                <p className="text-sm font-medium leading-none">{userName}</p>
                 <p className="text-xs leading-none text-muted-foreground">
-                  {user.role}
+                  {roleDisplay}
                 </p>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem onClick={() => console.log('Profile')}>
+              <DropdownMenuItem onClick={() => router.push(
+                detectedRole === 'property-owner' 
+                  ? '/propertyowner-profile' 
+                  : '/tenant-profile'
+              )}>
                 <User className="mr-2 h-4 w-4" />
                 <span>Profile</span>
               </DropdownMenuItem>

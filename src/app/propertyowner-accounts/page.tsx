@@ -5,34 +5,22 @@ import { Header } from '@/components/shared/Header';
 import { Sidebar } from '@/components/shared/Sidebar';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { cn } from '@/lib/utils';
 import AccountManagement from '@/components/accounts';
 
-
-export default function accountspage() {
+export default function AccountsPage() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  
-
   return (
-    <div className="flex h-screen overflow-hidden ">
-      {/* Mobile Menu Button */}
-    
-
-      {/* Sidebar with mobile responsive wrapper */}
-      <div
-        className={cn(
-          "fixed md:sticky top-0 left-0 z-40 transition-transform duration-300 ease-in-out",
-          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-        )}
-      >
-        <Sidebar 
-          userRole="property-owner" 
-            onLogout={()=> router.push('/login')}
-          onNavigate={() => setIsMobileMenuOpen(false)} 
-          />
-      </div>
+    <div className="flex h-screen overflow-hidden">
+      {/* Sidebar - now handles its own rendering for mobile/desktop */}
+      <Sidebar 
+        userRole="property-owner" 
+        onLogout={() => router.push('/login')}
+        onNavigate={() => setIsMobileMenuOpen(false)}
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+      />
 
       {/* Main Content */}
       <div className="flex flex-col flex-1 overflow-hidden">

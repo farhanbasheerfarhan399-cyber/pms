@@ -3,6 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 import {
   Home,
   Building2,
@@ -12,6 +13,8 @@ import {
   Wrench,
   LogOut,
   CreditCard,
+  Menu,
+  X,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -21,7 +24,7 @@ const propertyOwnerNavItems = [
   { href: '/propertyowner-dashboard', label: 'Dashboard', icon: Home },
   { href: '/propertyowner-properties', label: 'Properties', icon: Building2 },
   { href: '/propertyowner-tenant', label: 'Tenants', icon: Users },
-  { href: 'propertyowner-lease', label: 'Leases', icon: FileText },
+  { href: '/propertyowner-lease', label: 'Leases', icon: FileText },
   { href: '/propertyowner-rent', label: 'Rent Management', icon: DollarSign },
   { href: '/propertyowner-maintenance', label: 'Maintenance', icon: Wrench },
   { href: '/propertyowner-accounts', label: 'Accounts', icon: CreditCard },
@@ -47,20 +50,39 @@ interface SidebarProps {
   userRole: 'property-owner' | 'tenant';
   onLogout?: () => void;
   onNavigate?: () => void;
+  isMobileMenuOpen?: boolean;
+  setIsMobileMenuOpen?: (open: boolean) => void;
 }
 
-export function Sidebar({ userRole, onLogout, onNavigate }: SidebarProps) {
+export function Sidebar({ 
+  userRole, 
+  onLogout, 
+  onNavigate,
+  isMobileMenuOpen = false,
+  setIsMobileMenuOpen
+}: SidebarProps) {
   const pathname = usePathname();
   const navItems = roleNavItems[userRole] || [];
 
   const normalize = (path: string) => path.replace(/\/+$/, '');
   const currentPath = normalize(pathname);
 
-  const handleLogout = () => onLogout?.();
-  const handleNavigate = () => onNavigate?.();
+  const handleLogout = () => {
+    setIsMobileMenuOpen?.(false);
+    onLogout?.();
+  };
 
-  return (
-    <div className="hidden md:flex flex-col w-[280px] border-r bg-white min-h-screen p-4 sticky top-0 shadow-md">
+  const handleNavigate = () => {
+    setIsMobileMenuOpen?.(false);
+    onNavigate?.();
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen?.(!isMobileMenuOpen);
+  };
+
+  const SidebarContent = () => (
+    <>
       {/* Logo */}
       <div className="flex items-center space-x-3 mb-8 p-3 bg-blue-600 rounded-lg">
         <Building2 className="h-8 w-8 text-white" strokeWidth={2} />
@@ -112,6 +134,42 @@ export function Sidebar({ userRole, onLogout, onNavigate }: SidebarProps) {
           Logout
         </Button>
       </div>
-    </div>
+    </>
+  );
+
+  return (
+    <>
+      {/* Mobile Menu Button - Only visible on mobile */}
+      <button
+        onClick={toggleMobileMenu}
+        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition-colors"
+        aria-label="Toggle menu"
+      >
+        {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+      </button>
+
+      {/* Mobile Sidebar Overlay - Only shows when menu is open */}
+      {isMobileMenuOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setIsMobileMenuOpen?.(false)}
+        />
+      )}
+
+      {/* Mobile Sidebar Drawer - Only visible on mobile */}
+      <div
+        className={cn(
+          'md:hidden fixed top-0 left-0 h-full w-[280px] bg-white z-50 p-4 flex flex-col transform transition-transform duration-300 ease-in-out shadow-2xl',
+          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        )}
+      >
+        <SidebarContent />
+      </div>
+
+      {/* Desktop Sidebar - Only visible on desktop */}
+      <div className="hidden md:flex flex-col w-[280px] border-r bg-white min-h-screen p-4 sticky top-0 shadow-md">
+        <SidebarContent />
+      </div>
+    </>
   );
 }
