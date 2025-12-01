@@ -3,8 +3,8 @@
 
 import * as React from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { Header } from '@/components/Shared/header';
-import { Sidebar } from '@/components/Shared/sidebar';
+import { Header } from '@/components/shared/Header';
+import { Sidebar } from '@/components/shared/Sidebar';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
