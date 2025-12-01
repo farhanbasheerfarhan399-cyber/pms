@@ -12,7 +12,12 @@ import {
   Home,
   Search,
   Plus,
-  ArrowLeft
+  ArrowLeft,
+  Mail,
+  Phone,
+  Calendar,
+  CreditCard,
+  User
 } from 'lucide-react';
 
 // Type definition - MUST MATCH PropertyForm.tsx
@@ -136,6 +141,18 @@ const mockProperties: Property[] = [
   }
 ];
 
+// Mock tenant details (same for all units)
+const mockTenantDetails = {
+  name: 'John Smith',
+  email: 'john.smith@email.com',
+  phone: '+1 (555) 123-4567',
+  leaseStart: 'Jan 1, 2024',
+  leaseEnd: 'Dec 31, 2024',
+  paymentStatus: 'Paid',
+  emergencyContact: 'Jane Smith',
+  emergencyPhone: '+1 (555) 987-6543',
+};
+
 export default function PropertyManagement() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
@@ -143,6 +160,7 @@ export default function PropertyManagement() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingProperty, setEditingProperty] = useState<Property | null>(null);
   const [properties, setProperties] = useState<Property[]>(mockProperties);
+  const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
 
   const handleAddProperty = (data: PropertyFormData) => {
     // Calculate total units from floorUnits
@@ -221,6 +239,151 @@ export default function PropertyManagement() {
     }
   };
 
+  // Tenant Details View
+  if (selectedUnit) {
+    return (
+      <div className="space-y-6">
+        {/* Back Button */}
+        <Button
+          variant="ghost"
+          onClick={() => setSelectedUnit(null)}
+          className="mb-4"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Units
+        </Button>
+
+        {/* Unit Header */}
+        <div className="bg-white rounded-lg border p-6">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">{selectedUnit.number}</h1>
+              <p className="text-gray-600 flex items-center gap-2 mt-1">
+                <Building2 className="w-4 h-4" />
+                {selectedProperty?.name}
+              </p>
+            </div>
+            <Badge className={`${getStatusColor(selectedUnit.status)} border text-base px-4 py-2`}>
+              {getStatusIcon(selectedUnit.status)} {selectedUnit.status}
+            </Badge>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+            <div>
+              <p className="text-sm text-gray-600">Floor</p>
+              <p className="text-2xl font-bold text-blue-600">{selectedUnit.floor}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">Monthly Rent</p>
+              <p className="text-2xl font-bold text-blue-600">${selectedUnit.rent}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">Unit ID</p>
+              <p className="text-2xl font-bold text-blue-600">{selectedUnit.id}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">Status</p>
+              <p className="text-2xl font-bold text-green-600 capitalize">{selectedUnit.status}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Tenant Information */}
+        <div className="bg-white rounded-lg border p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+              <User className="w-6 h-6 text-blue-600" />
+              Tenant Information
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div>
+                <label className="text-sm font-medium text-gray-600 flex items-center gap-2 mb-2">
+                  <User className="w-4 h-4" />
+                  Full Name
+                </label>
+                <p className="text-lg font-semibold text-gray-900">{mockTenantDetails.name}</p>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium text-gray-600 flex items-center gap-2 mb-2">
+                  <Mail className="w-4 h-4" />
+                  Email Address
+                </label>
+                <p className="text-lg font-semibold text-gray-900">{mockTenantDetails.email}</p>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium text-gray-600 flex items-center gap-2 mb-2">
+                  <Phone className="w-4 h-4" />
+                  Phone Number
+                </label>
+                <p className="text-lg font-semibold text-gray-900">{mockTenantDetails.phone}</p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="text-sm font-medium text-gray-600 flex items-center gap-2 mb-2">
+                  <Calendar className="w-4 h-4" />
+                  Lease Start Date
+                </label>
+                <p className="text-lg font-semibold text-gray-900">{mockTenantDetails.leaseStart}</p>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium text-gray-600 flex items-center gap-2 mb-2">
+                  <Calendar className="w-4 h-4" />
+                  Lease End Date
+                </label>
+                <p className="text-lg font-semibold text-gray-900">{mockTenantDetails.leaseEnd}</p>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium text-gray-600 flex items-center gap-2 mb-2">
+                  <CreditCard className="w-4 h-4" />
+                  Payment Status
+                </label>
+                <Badge className="bg-green-600 text-white hover:bg-green-600 text-base px-3 py-1">
+                  {mockTenantDetails.paymentStatus}
+                </Badge>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Emergency Contact */}
+        <div className="bg-white rounded-lg border p-6">
+          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+            <Users className="w-6 h-6 text-orange-600" />
+            Emergency Contact
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="text-sm font-medium text-gray-600 flex items-center gap-2 mb-2">
+                <User className="w-4 h-4" />
+                Contact Name
+              </label>
+              <p className="text-lg font-semibold text-gray-900">{mockTenantDetails.emergencyContact}</p>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-gray-600 flex items-center gap-2 mb-2">
+                <Phone className="w-4 h-4" />
+                Contact Phone
+              </label>
+              <p className="text-lg font-semibold text-gray-900">{mockTenantDetails.emergencyPhone}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Property Details View
   if (selectedProperty) {
     const property = selectedProperty;
     const floors = [...new Set(property.units_list.map((u: Unit) => u.floor))].sort();
@@ -333,7 +496,11 @@ export default function PropertyManagement() {
           <div className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {filteredUnits.map((unit: Unit) => (
-                <Card key={unit.id} className="border hover:shadow-lg transition-shadow">
+                <Card 
+                  key={unit.id} 
+                  className="border hover:shadow-lg transition-shadow cursor-pointer"
+                  onClick={() => setSelectedUnit(unit)}
+                >
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-3">
                       <h3 className="font-bold text-lg">{unit.number}</h3>
@@ -357,7 +524,6 @@ export default function PropertyManagement() {
                             <Users className="w-4 h-4 text-gray-400" />
                             <span className="text-gray-900 font-medium">{unit.tenant}</span>
                           </div>
-
                         </>
                       )}
                     </div>
@@ -371,6 +537,7 @@ export default function PropertyManagement() {
     );
   }
 
+  // Properties List View
   return (
     <div className="space-y-4">
       {/* Property Form Modal */}
