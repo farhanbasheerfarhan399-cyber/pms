@@ -1,36 +1,17 @@
-// app/moveinout/page.tsx
-"use client";
+import MoveInOutPhotos from "@/components/TenantMoveinout";
+import RootLayout from "../layout";
+import DashboardLayout from "@/components/Shared/layout";
 
-import { Sidebar } from '@/components/shared/Sidebar';
-import MoveInOutPhotos from '@/components/TenantMoveinout';
-import { Header } from '@/components/shared/Header';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
-export default function MoveInOutPage() {
-  const router = useRouter();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+
+
+
+
+export default function maintenance() {
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50">
-      {/* Sidebar - handles its own mobile menu button, overlay, and drawer */}
-      <Sidebar 
-        userRole="tenant" 
-        onLogout={() => router.push('/login')}
-        onNavigate={() => setIsMobileMenuOpen(false)}
-        isMobileMenuOpen={isMobileMenuOpen}
-        setIsMobileMenuOpen={setIsMobileMenuOpen}
-      />
-
-      {/* Main Content */}
-      <div className="flex flex-col flex-1 overflow-hidden">
-        <Header />
-        <main className="flex-1 overflow-auto">
-          <div className="h-full">
-            <MoveInOutPhotos />
-          </div>
-        </main>
-      </div>
-    </div>
+    <DashboardLayout>
+      <MoveInOutPhotos />
+    </DashboardLayout>
   );
 }

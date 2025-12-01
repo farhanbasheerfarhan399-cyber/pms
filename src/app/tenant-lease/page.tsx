@@ -1,41 +1,15 @@
-// src/app/pages/tenant-lease/page.tsx
-'use client';
+import TenantLease from "@/components/TenantLease";
 
-import { Header } from '@/components/shared/Header';
-import { Sidebar } from '@/components/shared/Sidebar';
-import TenantLease from '@/components/TenantLease';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import DashboardLayout from "@/components/Shared/layout";
 
-export default function TenantLeasePage() {
-  const router = useRouter();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleLogout = () => {
-    // Clear authentication data if needed
-    // localStorage.removeItem('authToken');
-    // sessionStorage.clear();
-    router.push('/login');
-  };
 
+
+
+export default function maintenance() {
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50">
-      {/* Sidebar - handles its own mobile menu button, overlay, and drawer */}
-      <Sidebar 
-        userRole="tenant" 
-        onLogout={handleLogout}
-        onNavigate={() => setIsMobileMenuOpen(false)}
-        isMobileMenuOpen={isMobileMenuOpen}
-        setIsMobileMenuOpen={setIsMobileMenuOpen}
-      />
-
-      {/* Main Content */}
-      <div className="flex flex-col flex-1 overflow-hidden">
-        <Header />
-        <main className="flex-1 overflow-y-auto">
-          <TenantLease />
-        </main>
-      </div>
-    </div>
+    <DashboardLayout>
+      <TenantLease />
+    </DashboardLayout>
   );
 }

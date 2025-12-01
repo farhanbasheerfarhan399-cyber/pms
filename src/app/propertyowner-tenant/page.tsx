@@ -1,36 +1,13 @@
-// src/app/pages/property-owner/tenant/page.tsx
-"use client";
+import TenantManagement from "@/components/TenantManagement";
 
-import { Sidebar } from '@/components/shared/Sidebar';
-import TenantManagement from '@/components/TenantManagement';
-import { Header } from '@/components/shared/Header';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import DashboardLayout from "@/components/Shared/layout";
 
-export default function TenantManagementPage() {
-  const router = useRouter();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+
+export default function maintenance() {
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar - handles its own mobile menu button, overlay, and drawer */}
-      <Sidebar 
-        userRole="property-owner" 
-        onLogout={() => router.push('/login')}
-        onNavigate={() => setIsMobileMenuOpen(false)}
-        isMobileMenuOpen={isMobileMenuOpen}
-        setIsMobileMenuOpen={setIsMobileMenuOpen}
-      />
-
-      {/* Main Content */}
-      <div className="flex flex-col flex-1 overflow-hidden">
-        <Header />
-        <main className="flex-1 overflow-hidden">
-          <div className="h-full p-6">
-            <TenantManagement />
-          </div>
-        </main>
-      </div>
-    </div>
+    <DashboardLayout>
+      <TenantManagement />
+    </DashboardLayout>
   );
 }
