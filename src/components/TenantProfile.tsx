@@ -70,8 +70,8 @@ export default function TenantProfile() {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-6xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex justify-between items-start">
+        {/* Header - Responsive Layout */}
+        <div className="flex flex-col gap-4 md:flex-row md:justify-between md:items-start">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">My Profile</h1>
             <p className="text-gray-600 mt-1">Manage your personal information</p>
@@ -105,7 +105,7 @@ export default function TenantProfile() {
               <div className="flex-1">
                 <h2 className="text-xl font-bold text-gray-900">{profileData.name}</h2>
                 <p className="text-sm text-gray-600 mt-0.5">{profileData.unit}</p>
-                <div className="flex gap-2 mt-2">
+                <div className="flex flex-wrap gap-2 mt-2">
                   <span className="px-2 py-0.5 bg-green-100 text-green-700 rounded-full text-xs font-medium">
                     {profileData.status}
                   </span>

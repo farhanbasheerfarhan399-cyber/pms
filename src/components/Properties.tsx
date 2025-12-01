@@ -61,14 +61,14 @@ const mockProperties: Property[] = [
     tenants: 18,
     vacant: 2,
     units_list: [
-      { id: 101, number: 'Unit 101', floor: 1, rent: 1200, tenant: 'John Smith', status: 'occupied', leaseStatus: 'Active' },
-      { id: 102, number: 'Unit 102', floor: 1, rent: 1200, tenant: 'Sarah Johnson', status: 'occupied', leaseStatus: 'Active' },
-      { id: 103, number: 'Unit 103', floor: 1, rent: 1200, status: 'vacant', leaseStatus: null },
-      { id: 104, number: 'Unit 104', floor: 1, rent: 1250, tenant: 'Mike Brown', status: 'occupied', leaseStatus: 'Active' },
-      { id: 201, number: 'Unit 201', floor: 2, rent: 1300, tenant: 'Emma Davis', status: 'occupied', leaseStatus: 'Active' },
-      { id: 202, number: 'Unit 202', floor: 2, rent: 1300, tenant: 'James Wilson', status: 'occupied', leaseStatus: 'Active' },
-      { id: 203, number: 'Unit 203', floor: 2, rent: 1300, status: 'maintenance', leaseStatus: null },
-      { id: 204, number: 'Unit 204', floor: 2, rent: 1350, tenant: 'Robert Taylor', status: 'occupied', leaseStatus: 'Expiring Soon' },
+      { id: 101, number: 'Unit 101', floor: 1, rent: 1200, tenant: 'John Smith', status: 'occupied' },
+      { id: 102, number: 'Unit 102', floor: 1, rent: 1200, tenant: 'Sarah Johnson', status: 'occupied' },
+      { id: 103, number: 'Unit 103', floor: 1, rent: 1200, status: 'vacant' },
+      { id: 104, number: 'Unit 104', floor: 1, rent: 1250, tenant: 'Mike Brown', status: 'occupied' },
+      { id: 201, number: 'Unit 201', floor: 2, rent: 1300, tenant: 'Emma Davis', status: 'occupied'},
+      { id: 202, number: 'Unit 202', floor: 2, rent: 1300, tenant: 'James Wilson', status: 'occupied'},
+      { id: 203, number: 'Unit 203', floor: 2, rent: 1300, status: 'maintenance' },
+      { id: 204, number: 'Unit 204', floor: 2, rent: 1350, tenant: 'Robert Taylor', status: 'occupied' },
     ]
   },
   {
@@ -82,14 +82,14 @@ const mockProperties: Property[] = [
     tenants: 30,
     vacant: 2,
     units_list: [
-       { id: 101, number: 'Unit 101', floor: 1, rent: 1200, tenant: 'John Smith', status: 'occupied', leaseStatus: 'Active' },
-      { id: 102, number: 'Unit 102', floor: 1, rent: 1200, tenant: 'Sarah Johnson', status: 'occupied', leaseStatus: 'Active' },
-      { id: 103, number: 'Unit 103', floor: 1, rent: 1200, status: 'vacant', leaseStatus: null },
-      { id: 104, number: 'Unit 104', floor: 1, rent: 1250, tenant: 'Mike Brown', status: 'occupied', leaseStatus: 'Active' },
-      { id: 201, number: 'Unit 201', floor: 2, rent: 1300, tenant: 'Emma Davis', status: 'occupied', leaseStatus: 'Active' },
-      { id: 202, number: 'Unit 202', floor: 2, rent: 1300, tenant: 'James Wilson', status: 'occupied', leaseStatus: 'Active' },
-      { id: 203, number: 'Unit 203', floor: 2, rent: 1300, status: 'maintenance', leaseStatus: null },
-      { id: 204, number: 'Unit 204', floor: 2, rent: 1350, tenant: 'Robert Taylor', status: 'occupied', leaseStatus: 'Expiring Soon' },
+       { id: 101, number: 'Unit 101', floor: 1, rent: 1200, tenant: 'John Smith', status: 'occupied' },
+      { id: 102, number: 'Unit 102', floor: 1, rent: 1200, tenant: 'Sarah Johnson', status: 'occupied' },
+      { id: 103, number: 'Unit 103', floor: 1, rent: 1200, status: 'vacant' },
+      { id: 104, number: 'Unit 104', floor: 1, rent: 1250, tenant: 'Mike Brown', status: 'occupied' },
+      { id: 201, number: 'Unit 201', floor: 2, rent: 1300, tenant: 'Emma Davis', status: 'occupied'},
+      { id: 202, number: 'Unit 202', floor: 2, rent: 1300, tenant: 'James Wilson', status: 'occupied'},
+      { id: 203, number: 'Unit 203', floor: 2, rent: 1300, status: 'maintenance' },
+      { id: 204, number: 'Unit 204', floor: 2, rent: 1350, tenant: 'Robert Taylor', status: 'occupied' },
     ]
   },
   {
@@ -103,14 +103,14 @@ const mockProperties: Property[] = [
     tenants: 45,
     vacant: 3,
     units_list: [
-       { id: 101, number: 'Unit 101', floor: 1, rent: 1200, tenant: 'John Smith', status: 'occupied', leaseStatus: 'Active' },
-      { id: 102, number: 'Unit 102', floor: 1, rent: 1200, tenant: 'Sarah Johnson', status: 'occupied', leaseStatus: 'Active' },
-      { id: 103, number: 'Unit 103', floor: 1, rent: 1200, status: 'vacant', leaseStatus: null },
-      { id: 104, number: 'Unit 104', floor: 1, rent: 1250, tenant: 'Mike Brown', status: 'occupied', leaseStatus: 'Active' },
-      { id: 201, number: 'Unit 201', floor: 2, rent: 1300, tenant: 'Emma Davis', status: 'occupied', leaseStatus: 'Active' },
-      { id: 202, number: 'Unit 202', floor: 2, rent: 1300, tenant: 'James Wilson', status: 'occupied', leaseStatus: 'Active' },
-      { id: 203, number: 'Unit 203', floor: 2, rent: 1300, status: 'maintenance', leaseStatus: null },
-      { id: 204, number: 'Unit 204', floor: 2, rent: 1350, tenant: 'Robert Taylor', status: 'occupied', leaseStatus: 'Expiring Soon' },
+        { id: 101, number: 'Unit 101', floor: 1, rent: 1200, tenant: 'John Smith', status: 'occupied' },
+      { id: 102, number: 'Unit 102', floor: 1, rent: 1200, tenant: 'Sarah Johnson', status: 'occupied' },
+      { id: 103, number: 'Unit 103', floor: 1, rent: 1200, status: 'vacant' },
+      { id: 104, number: 'Unit 104', floor: 1, rent: 1250, tenant: 'Mike Brown', status: 'occupied' },
+      { id: 201, number: 'Unit 201', floor: 2, rent: 1300, tenant: 'Emma Davis', status: 'occupied'},
+      { id: 202, number: 'Unit 202', floor: 2, rent: 1300, tenant: 'James Wilson', status: 'occupied'},
+      { id: 203, number: 'Unit 203', floor: 2, rent: 1300, status: 'maintenance' },
+      { id: 204, number: 'Unit 204', floor: 2, rent: 1350, tenant: 'Robert Taylor', status: 'occupied' },
     ]
   },
   {
@@ -124,14 +124,14 @@ const mockProperties: Property[] = [
     tenants: 22,
     vacant: 2,
     units_list: [
-       { id: 101, number: 'Unit 101', floor: 1, rent: 1200, tenant: 'John Smith', status: 'occupied', leaseStatus: 'Active' },
-      { id: 102, number: 'Unit 102', floor: 1, rent: 1200, tenant: 'Sarah Johnson', status: 'occupied', leaseStatus: 'Active' },
-      { id: 103, number: 'Unit 103', floor: 1, rent: 1200, status: 'vacant', leaseStatus: null },
-      { id: 104, number: 'Unit 104', floor: 1, rent: 1250, tenant: 'Mike Brown', status: 'occupied', leaseStatus: 'Active' },
-      { id: 201, number: 'Unit 201', floor: 2, rent: 1300, tenant: 'Emma Davis', status: 'occupied', leaseStatus: 'Active' },
-      { id: 202, number: 'Unit 202', floor: 2, rent: 1300, tenant: 'James Wilson', status: 'occupied', leaseStatus: 'Active' },
-      { id: 203, number: 'Unit 203', floor: 2, rent: 1300, status: 'maintenance', leaseStatus: null },
-      { id: 204, number: 'Unit 204', floor: 2, rent: 1350, tenant: 'Robert Taylor', status: 'occupied', leaseStatus: 'Expiring Soon' },
+        { id: 101, number: 'Unit 101', floor: 1, rent: 1200, tenant: 'John Smith', status: 'occupied' },
+      { id: 102, number: 'Unit 102', floor: 1, rent: 1200, tenant: 'Sarah Johnson', status: 'occupied' },
+      { id: 103, number: 'Unit 103', floor: 1, rent: 1200, status: 'vacant' },
+      { id: 104, number: 'Unit 104', floor: 1, rent: 1250, tenant: 'Mike Brown', status: 'occupied' },
+      { id: 201, number: 'Unit 201', floor: 2, rent: 1300, tenant: 'Emma Davis', status: 'occupied'},
+      { id: 202, number: 'Unit 202', floor: 2, rent: 1300, tenant: 'James Wilson', status: 'occupied'},
+      { id: 203, number: 'Unit 203', floor: 2, rent: 1300, status: 'maintenance' },
+      { id: 204, number: 'Unit 204', floor: 2, rent: 1350, tenant: 'Robert Taylor', status: 'occupied' },
     ]
   }
 ];
@@ -357,11 +357,7 @@ export default function PropertyManagement() {
                             <Users className="w-4 h-4 text-gray-400" />
                             <span className="text-gray-900 font-medium">{unit.tenant}</span>
                           </div>
-                          {unit.leaseStatus && (
-                            <Badge variant="outline" className="w-full justify-center">
-                              {unit.leaseStatus}
-                            </Badge>
-                          )}
+
                         </>
                       )}
                     </div>
@@ -389,18 +385,17 @@ export default function PropertyManagement() {
         isEdit={!!editingProperty}
       />
 
-      {/* Header with Add Property Button */}
-      <div className="flex items-center justify-between">
+     {/* Header with Add Property Button */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Property Management</h1>
         <Button 
           onClick={() => setIsFormOpen(true)}
-          className="bg-blue-600 hover:bg-blue-700"
+          className="bg-blue-600 hover:bg-blue-700 w-fit"
         >
           <Plus className="w-5 h-5 mr-2" />
           Add Property
         </Button>
       </div>
-
       {/* Properties Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredProperties.map(property => (

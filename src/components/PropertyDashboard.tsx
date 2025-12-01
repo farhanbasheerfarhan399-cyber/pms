@@ -119,13 +119,13 @@ export function PropertyOwnerDashboard() {
         {/* Total Properties */}
         <Card className="border hover:shadow-lg transition-shadow">
           <CardContent className="p-3 sm:p-4 pt-2">
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-600 mb-2">Total Properties</p>
                 <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">{stats.totalProperties.value}</h3>
                 <p className="text-sm text-green-600 font-medium">{stats.totalProperties.change}</p>
               </div>
-              <div className="bg-blue-100 p-2 rounded-lg">
+              <div className="bg-blue-100 p-2 rounded-lg shrink-0">
                 <Building2 className="w-5 h-5 text-blue-600" />
               </div>
             </div>
@@ -135,13 +135,13 @@ export function PropertyOwnerDashboard() {
         {/* Total Tenants */}
         <Card className="border hover:shadow-lg transition-shadow">
           <CardContent className="p-3 sm:p-4">
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-600 mb-2">Total Tenants</p>
                 <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">{stats.totalTenants.value}</h3>
                 <p className="text-sm text-green-600 font-medium">{stats.totalTenants.change}</p>
               </div>
-              <div className="bg-blue-100 p-2 rounded-lg">
+              <div className="bg-blue-100 p-2 rounded-lg shrink-0">
                 <Users className="w-5 h-5 text-blue-600" />
               </div>
             </div>
@@ -151,15 +151,15 @@ export function PropertyOwnerDashboard() {
         {/* Monthly Revenue */}
         <Card className="border hover:shadow-lg transition-shadow">
           <CardContent className="p-3 sm:p-4">
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-600 mb-2">Monthly Revenue</p>
                 <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
                   ${stats.monthlyRevenue.value.toLocaleString()}
                 </h3>
                 <p className="text-sm text-green-600 font-medium">{stats.monthlyRevenue.change}</p>
               </div>
-              <div className="bg-blue-100 p-2 rounded-lg">
+              <div className="bg-blue-100 p-2 rounded-lg shrink-0">
                 <DollarSign className="w-5 h-5 text-blue-600" />
               </div>
             </div>
@@ -169,20 +169,19 @@ export function PropertyOwnerDashboard() {
         {/* Pending Maintenance */}
         <Card className="border hover:shadow-lg transition-shadow">
           <CardContent className="p-3 sm:p-4">
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-600 mb-2">Pending Maintenance</p>
                 <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">{stats.pendingMaintenance.value}</h3>
                 <p className="text-sm text-red-600 font-medium">{stats.pendingMaintenance.change}</p>
               </div>
-              <div className="bg-blue-100 p-2 rounded-lg">
+              <div className="bg-blue-100 p-2 rounded-lg shrink-0">
                 <Wrench className="w-5 h-5 text-blue-600" />
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
-
       {/* Charts Section - Reduced Height */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Rent Collection Overview */}
